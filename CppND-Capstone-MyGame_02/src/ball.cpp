@@ -14,11 +14,11 @@ void Ball::init()
     setWindowSize(640, 640);
 
     // initial condition
-    pos_x  = _window_width  / 4.0;
+    pos_x  = _window_width  / 3.0;
     pos_y  = _window_height / 2.0;
     vel_x  = -0.1*10*3;
     vel_y  = -0.1*10*3;
-    radius = 4.0;
+    radius = 5.0;
 }
 
 void Ball::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)

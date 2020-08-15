@@ -19,8 +19,8 @@ void Racket::init()
     pos_y  = _window_height / 2.0;
     vel_x  = 0.1*10*10;
     vel_y  = 0.0;
-    width  = 100.0;
-    height = 4.0;
+    width  = 200.0;
+    height = 20.0;
 }
 
 void Racket::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)

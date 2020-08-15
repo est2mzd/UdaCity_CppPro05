@@ -48,11 +48,28 @@ bool Collision_Check::checkBallvsBlocks(Ball& ball, Block_Multi& blocks)
 }
 
 
+bool Collision_Check::checkBallvsRacket(Ball& ball, Racket& racket)
+{
+    float ball_center_x = ball.pos_x + ball.radius;
+    float ball_center_y = ball.pos_y + ball.radius;
+
+    float block_center_x = racket.pos_x + racket.width/2.0;
+    float block_center_y = racket.pos_y + racket.height/2.0;
+    float diff_x = ball_center_x - block_center_x;
+    float diff_y = ball_center_y - block_center_y;
+
+    if ( checkSub(ball, diff_x, diff_y, racket.width, racket.height) )
+        return true;
+
+    return false;
+}
+
+
 bool Collision_Check::checkSub(Ball& ball, float diff_x, float diff_y, float obj_w, float obj_h)
 {
-    if ( fabs(diff_x) <= (ball.radius + obj_w)  )
+    if ( fabs(diff_x) <= (ball.radius + obj_w/2.0)  )
     {
-        if ( fabs(diff_y) <= (ball.radius + obj_h)  )
+        if ( fabs(diff_y) <= (ball.radius + obj_h/2.0)  )
         {
             // check which surface does the ball collide to.
             float length    = powf( (powf(diff_x, 2.0) + powf(diff_y, 2.0)), 0.5 ) + 1e-6;
@@ -62,11 +79,28 @@ bool Collision_Check::checkSub(Ball& ball, float diff_x, float diff_y, float obj
             if ((angle_deg <= 45) || (angle_deg <= 135))
             {
                 //  When ball is to the side of the block
-                ball.vel_x = - ball.vel_x;
+                if (diff_x >= 0){
+                    ball.vel_x = fabs(ball.vel_x);
+                }
+                else
+                {
+                    ball.vel_x = -1.0 * fabs(ball.vel_x);
+                }
+                
+                std::cout << "ball vel x = " << ball.vel_x << std::endl;
+                
             }
             else
             {
-                ball.vel_y = - ball.vel_y;
+                if (diff_y >= 0){
+                    ball.vel_y = - 1.0 * fabs(ball.vel_y);
+                }
+                else
+                {
+                    ball.vel_y =  fabs(ball.vel_y);
+                }
+
+                std::cout << "ball vel y = " << ball.vel_y << std::endl;
             }
 
             return true;
@@ -79,7 +113,3 @@ bool Collision_Check::checkSub(Ball& ball, float diff_x, float diff_y, float obj
 
 
 
-bool Collision_Check::checkBallvsRacket(Ball& ball, Racket& racket)
-{
-
-}
