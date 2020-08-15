@@ -4,12 +4,15 @@
 
 Game::Game(std::size_t grid_width, std::size_t grid_height)
     : snake(grid_width, grid_height),
-      ball(),
-      racket(),
+      // ball(),
+      // racket(),
       engine(dev()),
       random_w(0, static_cast<int>(grid_width)),
       random_h(0, static_cast<int>(grid_height)) 
 {
+  std::cout << "Game : Initializing" << std::endl;
+  Ball ball;
+  Racket racket;
   PlaceFood();
 }
 

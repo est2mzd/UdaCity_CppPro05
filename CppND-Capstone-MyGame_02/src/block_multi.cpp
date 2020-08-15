@@ -30,3 +30,8 @@ void Block_Multi::addBlock(float x, float y, float w, float h)
     list.emplace_back(std::move(block));
 }
 
+// create default block lilst
+void Block_Multi::createDefaultBlocks()
+{
+    
+}
