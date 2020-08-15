@@ -1,4 +1,4 @@
-#include "sample_A.h"
+#include "sample_A2.h"
 
 class sample_B
 {
