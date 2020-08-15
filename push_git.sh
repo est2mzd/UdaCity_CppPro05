@@ -5,7 +5,8 @@ else
    comments="$1"
 fi
 
-git add .
+#git add .
+git add -u
 git commit -m "$comments"
 git push -u origin master
 

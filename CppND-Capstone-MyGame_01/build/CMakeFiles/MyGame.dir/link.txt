@@ -1,1 +1,0 @@
-/usr/bin/c++ CMakeFiles/MyGame.dir/src/ball.cpp.o CMakeFiles/MyGame.dir/src/block_base.cpp.o CMakeFiles/MyGame.dir/src/controller.cpp.o CMakeFiles/MyGame.dir/src/game.cpp.o CMakeFiles/MyGame.dir/src/main.cpp.o CMakeFiles/MyGame.dir/src/racket.cpp.o CMakeFiles/MyGame.dir/src/renderer.cpp.o CMakeFiles/MyGame.dir/src/snake.cpp.o -o MyGame  -L/usr/lib/x86_64-linux-gnu  -lSDL2 
