@@ -16,9 +16,10 @@ class Game {
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
-
- private:
   Snake snake;
+  
+ private:
+
   Ball  ball;
   Racket racket;
   SDL_Point food;
@@ -30,7 +31,6 @@ class Game {
 
   int score{0};
 
-  void PlaceFood();
   void Update();
 };
 

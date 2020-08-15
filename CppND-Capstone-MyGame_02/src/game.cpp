@@ -2,18 +2,15 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(std::size_t grid_width, std::size_t grid_height)
-    : snake(grid_width, grid_height),
-      // ball(),
-      // racket(),
-      engine(dev()),
-      random_w(0, static_cast<int>(grid_width)),
-      random_h(0, static_cast<int>(grid_height)) 
+Game::Game(std::size_t grid_width, std::size_t grid_height)  // : snake( (int)grid_width, (int)grid_height)
 {
   std::cout << "Game : Initializing" << std::endl;
-  Ball ball;
+  Snake snake( (int)grid_width, (int)grid_height);
+  std::mt19937 engine(dev());
+  std::uniform_int_distribution<int> random_w(0, static_cast<int>(grid_width ));
+  std::uniform_int_distribution<int> random_h(0, static_cast<int>(grid_height));   
+  Ball ball;     // this way calls copy-constructor, probably
   Racket racket;
-  PlaceFood();
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer, std::size_t target_frame_duration) 
@@ -59,20 +56,6 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
   }
 }
 
-void Game::PlaceFood() {
-  int x, y;
-  while (true) {
-    x = random_w(engine);
-    y = random_h(engine);
-    // Check that the location is not occupied by a snake item before placing
-    // food.
-    if (!snake.SnakeCell(x, y)) {
-      food.x = x;
-      food.y = y;
-      return;
-    }
-  }
-}
 
 void Game::Update() {
   if (!snake.alive) return;
@@ -87,7 +70,6 @@ void Game::Update() {
   // Check if there's food over here
   if (food.x == new_x && food.y == new_y) {
     score++;
-    PlaceFood();
     // Grow snake and increase speed.
     snake.GrowBody();
     snake.speed += 0.02;
