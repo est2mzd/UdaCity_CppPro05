@@ -5,7 +5,6 @@
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
-#include "snake.h"
 #include "ball.h"
 #include "racket.h"
 #include "block_multi.h"
@@ -18,7 +17,6 @@ class Game {
            std::size_t target_frame_duration);
   int GetScore() const;
   int GetSize() const;
-  Snake snake;
 
  private:
 

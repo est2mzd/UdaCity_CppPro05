@@ -3,10 +3,8 @@
 #include "SDL.h"
 
 Game::Game(std::size_t grid_width, std::size_t grid_height) 
-  : snake(grid_width, grid_height)
 {
   std::cout << "Game : Initializing" << std::endl;
-  // Snake snake( (int)grid_width, (int)grid_height);
   std::mt19937 engine(dev());
   std::uniform_int_distribution<int> random_w(0, static_cast<int>(grid_width ));
   std::uniform_int_distribution<int> random_h(0, static_cast<int>(grid_height));   
@@ -28,9 +26,9 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
     frame_start = SDL_GetTicks();
 
     // Input, Update, Render - the main game loop.
-    controller.HandleInput(running, snake, racket);
+    controller.HandleInput(running, racket);
     Update();
-    renderer.Render(snake, ball, racket, blocks, food);
+    renderer.Render(ball, racket, blocks, food);
 
     frame_end = SDL_GetTicks();
 
@@ -59,34 +57,14 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
 
 
 void Game::Update() {
-  if (!snake.alive) return;
 
-  snake.Update();
   ball.UpdatePosition();
   racket.UpdatePosition();
-
-  if (checker.checkBallvsRacket(ball, racket))
-  {
-    // std::cout << "Collision to Racket" << std::endl;
-  }
+  checker.checkBallvsRacket(ball, racket);
 
   if (checker.checkBallvsBlocks(ball, blocks))
-  {
     score++;
-    // std::cout << "Collision to Block" << std::endl;
-  }
-
-  int new_x = static_cast<int>(snake.head_x);
-  int new_y = static_cast<int>(snake.head_y);
-
-  // Check if there's food over here
-  if (food.x == new_x && food.y == new_y) {
-    score++;
-    // Grow snake and increase speed.
-    snake.GrowBody();
-    snake.speed += 0.02;
-  }
 }
 
 int Game::GetScore() const { return score; }
-int Game::GetSize() const { return snake.size; }
+int Game::GetSize() const { return -9999; } // snake

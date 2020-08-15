@@ -16,7 +16,7 @@ Renderer::Renderer(const std::size_t screen_width,
   }
 
   // Create Window
-  sdl_window = SDL_CreateWindow("Snake Game", SDL_WINDOWPOS_CENTERED,
+  sdl_window = SDL_CreateWindow("Block Breaking Game", SDL_WINDOWPOS_CENTERED,
                                 SDL_WINDOWPOS_CENTERED, screen_width,
                                 screen_height, SDL_WINDOW_SHOWN);
 
@@ -38,26 +38,14 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, Ball ball, Racket racket,  Block_Multi blocks, SDL_Point const &food)
+void Renderer::Render(Ball ball, Racket racket,  Block_Multi blocks, SDL_Point const &food)
 {
   SDL_Rect block;
-  block.w = screen_width / grid_width;    // set block width
-  block.h = screen_height / grid_height;  // set block height
-
+ 
   //---------------------------------------------------------
   // Clear screen
   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF); // set color
   SDL_RenderClear(sdl_renderer);
-
-  //---------------------------------------------------------
-  // Render food
-  // SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF); // set color
-
-  // block.w = screen_width / grid_width;    // set block width
-  // block.h = screen_height / grid_height;  // set block height
-  // block.x = food.x * block.w;
-  // block.y = food.y * block.h;
-  // SDL_RenderFillRect(sdl_renderer, &block); // set 1 block
 
   //---------------------------------------------------------
   // Ball
@@ -72,36 +60,11 @@ void Renderer::Render(Snake const snake, Ball ball, Racket racket,  Block_Multi 
   blocks.render(sdl_renderer, block);
 
   //---------------------------------------------------------
-  // Render snake's body
-  // SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-  // block.w = screen_width / grid_width;    // set block width
-  // block.h = screen_height / grid_height;  // set block height
-
-  // for (SDL_Point const &point : snake.body) {
-  //   block.x = point.x * block.w;
-  //   block.y = point.y * block.h;
-  //   SDL_RenderFillRect(sdl_renderer, &block);
-  // }
-
-  //---------------------------------------------------------
-  // Render snake's head
-  // block.w = screen_width / grid_width;    // set block width
-  // block.h = screen_height / grid_height;  // set block height  
-  // block.x = static_cast<int>(snake.head_x) * block.w;
-  // block.y = static_cast<int>(snake.head_y) * block.h;
-  // if (snake.alive) {
-  //   SDL_SetRenderDrawColor(sdl_renderer, 0x00, 0x7A, 0xCC, 0xFF);
-  // } else {
-  //   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0x00, 0x00, 0xFF);
-  // }
-  // SDL_RenderFillRect(sdl_renderer, &block);
-
-  //---------------------------------------------------------
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
 }
 
 void Renderer::UpdateWindowTitle(int score, int fps) {
-  std::string title{"Snake Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
+  std::string title{"Block Breaking Game Score: " + std::to_string(score) + " FPS: " + std::to_string(fps)};
   SDL_SetWindowTitle(sdl_window, title.c_str());
 }

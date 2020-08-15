@@ -1,20 +1,12 @@
 #include "controller.h"
 #include <iostream>
 #include "SDL.h"
-#include "snake.h"
 
 
 // This is the controller of key-input, so I want to use this to move racket.
 // This class does not controll the ball movement.
 
-void Controller::ChangeDirection(Snake &snake, Snake::Direction input, Snake::Direction opposite) const 
-{
-  if (snake.direction != opposite || snake.size == 1) 
-    snake.direction = input;
-  return;
-}
-
-void Controller::HandleInput(bool &running, Snake &snake, Racket &racket) const 
+void Controller::HandleInput(bool &running,  Racket &racket) const 
 {
   SDL_Event e;
 

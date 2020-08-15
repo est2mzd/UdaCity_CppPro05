@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "SDL.h"
-#include "snake.h"
 #include "ball.h"
 #include "racket.h"
 #include "block_multi.h"
@@ -16,7 +15,7 @@ class Renderer {
            const std::size_t grid_height);
   ~Renderer();
 
-  void Render(Snake const snake, Ball ball, Racket racket,  Block_Multi blocks, SDL_Point const &food);
+  void Render(Ball ball, Racket racket,  Block_Multi blocks, SDL_Point const &food);
   void UpdateWindowTitle(int score, int fps);
 
  private:
