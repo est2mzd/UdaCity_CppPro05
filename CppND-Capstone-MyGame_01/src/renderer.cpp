@@ -38,30 +38,63 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, SDL_Point const &food) {
+void Renderer::Render(Snake const snake, Ball const ball, Racket const racket,SDL_Point const &food)
+{
   SDL_Rect block;
-  block.w = screen_width / grid_width;
-  block.h = screen_height / grid_height;
+  block.w = screen_width / grid_width;    // set block width
+  block.h = screen_height / grid_height;  // set block height
 
+  //---------------------------------------------------------
   // Clear screen
-  SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF);
+  SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF); // set color
   SDL_RenderClear(sdl_renderer);
 
+  //---------------------------------------------------------
   // Render food
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF);
+  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xCC, 0x00, 0xFF); // set color
+
+  block.w = screen_width / grid_width;    // set block width
+  block.h = screen_height / grid_height;  // set block height
   block.x = food.x * block.w;
   block.y = food.y * block.h;
+  SDL_RenderFillRect(sdl_renderer, &block); // set 1 block
+
+  //---------------------------------------------------------
+  // Ball
+  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+  block.w = ball.radius*2.0;  // set block width
+  block.h = ball.radius*2.0;           // set block height
+  block.x = ball.pos_x;
+  block.y = ball.pos_y;
   SDL_RenderFillRect(sdl_renderer, &block);
 
+  //---------------------------------------------------------
+  // Racket
+  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+  block.w = racket.width;  // set block width
+  block.h = racket.height;           // set block height
+  block.x = racket.pos_x;
+  block.y = racket.pos_y;
+  SDL_RenderFillRect(sdl_renderer, &block);
+
+  //---------------------------------------------------------
   // Render snake's body
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+  block.w = screen_width / grid_width;    // set block width
+  block.h = screen_height / grid_height;  // set block height
+
   for (SDL_Point const &point : snake.body) {
     block.x = point.x * block.w;
     block.y = point.y * block.h;
     SDL_RenderFillRect(sdl_renderer, &block);
   }
 
+  //---------------------------------------------------------
   // Render snake's head
+  block.w = screen_width / grid_width;    // set block width
+  block.h = screen_height / grid_height;  // set block height  
   block.x = static_cast<int>(snake.head_x) * block.w;
   block.y = static_cast<int>(snake.head_y) * block.h;
   if (snake.alive) {
@@ -71,6 +104,7 @@ void Renderer::Render(Snake const snake, SDL_Point const &food) {
   }
   SDL_RenderFillRect(sdl_renderer, &block);
 
+  //---------------------------------------------------------
   // Update Screen
   SDL_RenderPresent(sdl_renderer);
 }

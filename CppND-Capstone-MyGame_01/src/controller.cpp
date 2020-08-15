@@ -3,37 +3,44 @@
 #include "SDL.h"
 #include "snake.h"
 
-void Controller::ChangeDirection(Snake &snake, Snake::Direction input,
-                                 Snake::Direction opposite) const {
-  if (snake.direction != opposite || snake.size == 1) snake.direction = input;
+
+// this is the controller of key-input 
+// so, I want to use this, to move racket
+// this class does not controll the ball movement
+
+void Controller::ChangeDirection(Snake &snake, Snake::Direction input, Snake::Direction opposite) const 
+{
+  if (snake.direction != opposite || snake.size == 1) 
+    snake.direction = input;
   return;
 }
 
-void Controller::HandleInput(bool &running, Snake &snake) const {
+void Controller::HandleInput(bool &running, Snake &snake, Racket &racket) const 
+{
   SDL_Event e;
-  while (SDL_PollEvent(&e)) {
-    if (e.type == SDL_QUIT) {
+
+  // init 
+  racket.direction = RacketDirection::kNone;
+
+  while (SDL_PollEvent(&e)) 
+  {
+    if (e.type == SDL_QUIT) 
+    {
       running = false;
-    } else if (e.type == SDL_KEYDOWN) {
+    } 
+    else if (e.type == SDL_KEYDOWN) 
+    {
       switch (e.key.keysym.sym) {
-        case SDLK_UP:
-          ChangeDirection(snake, Snake::Direction::kUp,
-                          Snake::Direction::kDown);
-          break;
-
-        case SDLK_DOWN:
-          ChangeDirection(snake, Snake::Direction::kDown,
-                          Snake::Direction::kUp);
-          break;
-
         case SDLK_LEFT:
-          ChangeDirection(snake, Snake::Direction::kLeft,
-                          Snake::Direction::kRight);
+          racket.direction = RacketDirection::kLeft;
           break;
 
         case SDLK_RIGHT:
-          ChangeDirection(snake, Snake::Direction::kRight,
-                          Snake::Direction::kLeft);
+          racket.direction = RacketDirection::kRight;
+          break;
+
+        default:
+          racket.direction = RacketDirection::kNone;
           break;
       }
     }
