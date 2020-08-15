@@ -17,7 +17,7 @@ void Ball::init()
     pos_x  = _window_width  / 3.0;
     pos_y  = _window_height / 2.0;
     vel_x  = -0.1*10*3;
-    vel_y  = -0.1*10*3;
+    vel_y  = -0.1*10*1;
     radius = 5.0;
 }
 

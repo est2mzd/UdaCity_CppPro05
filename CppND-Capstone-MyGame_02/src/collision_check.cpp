@@ -64,7 +64,53 @@ bool Collision_Check::checkBallvsRacket(Ball& ball, Racket& racket)
     return false;
 }
 
+bool Collision_Check::checkSub(Ball& ball, float diff_x, float diff_y, float obj_w, float obj_h)
+{
+    if ( fabs(diff_x) <= (ball.radius + obj_w/2.0)  )
+    {
+        if ( fabs(diff_y) <= (ball.radius + obj_h/2.0)  )
+        {
+            // check which surface does the ball collide to.
+            float length    = powf( (powf(diff_x, 2.0) + powf(diff_y, 2.0)), 0.5 ) + 1e-6;
+            float angle_deg =  atanf(diff_x / length) / 3.141592 * 180.0; // return is 0 to 180 deg
+            
+            // upper or bottom
+            if (fabs(diff_x) <= obj_w/2.0)
+            {
+                if (diff_y >= 0)
+                {
+                    ball.vel_y =  fabs(ball.vel_y);
+                }
+                else
+                {
+                    ball.vel_y = - fabs(ball.vel_y);
+                }
 
+                // std::cout << "Upper or Bottom" << std::endl;
+                
+            }
+            else // left of right
+            {
+                if (diff_x >= 0)
+                {
+                    ball.vel_x = fabs(ball.vel_x);
+                }
+                else
+                {
+                    ball.vel_x = - fabs(ball.vel_x);
+                }
+
+                // std::cout << "Left or Right" << std::endl;
+            }
+
+            return true;
+        }
+    }
+
+    return false;
+}
+
+/*
 bool Collision_Check::checkSub(Ball& ball, float diff_x, float diff_y, float obj_w, float obj_h)
 {
     if ( fabs(diff_x) <= (ball.radius + obj_w/2.0)  )
@@ -109,7 +155,6 @@ bool Collision_Check::checkSub(Ball& ball, float diff_x, float diff_y, float obj
 
     return false;
 }
-
-
+*/
 
 

@@ -67,13 +67,13 @@ void Game::Update() {
 
   if (checker.checkBallvsRacket(ball, racket))
   {
-    std::cout << "Collision to Racket" << std::endl;
+    // std::cout << "Collision to Racket" << std::endl;
   }
-  
+
   if (checker.checkBallvsBlocks(ball, blocks))
   {
     score++;
-    std::cout << "Collision to Block" << std::endl;
+    // std::cout << "Collision to Block" << std::endl;
   }
 
   int new_x = static_cast<int>(snake.head_x);
