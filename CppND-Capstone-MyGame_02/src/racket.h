@@ -21,6 +21,7 @@ class Racket {
     void UpdatePosition();
     void setWindowSize(int width, int height);
     void checkCollideToWall();
+    void render(SDL_Renderer *sdl_renderer, SDL_Rect &block);
  private:
     int   _window_width;
     int   _window_height;

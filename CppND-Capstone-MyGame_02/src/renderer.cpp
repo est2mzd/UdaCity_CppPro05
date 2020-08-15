@@ -38,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, Ball const ball, Racket const racket,SDL_Point const &food)
+void Renderer::Render(Snake const snake, Ball const ball, Racket racket,SDL_Point const &food)
 {
   SDL_Rect block;
   block.w = screen_width / grid_width;    // set block width
@@ -64,20 +64,22 @@ void Renderer::Render(Snake const snake, Ball const ball, Racket const racket,SD
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
   block.w = ball.radius*2.0;  // set block width
-  block.h = ball.radius*2.0;           // set block height
+  block.h = ball.radius*2.0;  // set block height
   block.x = ball.pos_x;
   block.y = ball.pos_y;
   SDL_RenderFillRect(sdl_renderer, &block);
 
   //---------------------------------------------------------
   // Racket
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+  racket.render(sdl_renderer, block);
 
-  block.w = racket.width;  // set block width
-  block.h = racket.height;           // set block height
-  block.x = racket.pos_x;
-  block.y = racket.pos_y;
-  SDL_RenderFillRect(sdl_renderer, &block);
+  // SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+
+  // block.w = racket.width;  // set block width
+  // block.h = racket.height;           // set block height
+  // block.x = racket.pos_x;
+  // block.y = racket.pos_y;
+  // SDL_RenderFillRect(sdl_renderer, &block);
 
   //---------------------------------------------------------
   // Render snake's body
