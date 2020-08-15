@@ -8,6 +8,8 @@
 #include "snake.h"
 #include "ball.h"
 #include "racket.h"
+#include "block_multi.h"
+#include "collision_check.h"
 
 class Game {
  public:
@@ -17,11 +19,13 @@ class Game {
   int GetScore() const;
   int GetSize() const;
   Snake snake;
-  
+
  private:
 
   Ball  ball;
   Racket racket;
+  Block_Multi blocks;
+  Collision_Check checker;
   SDL_Point food;
 
   std::random_device dev;

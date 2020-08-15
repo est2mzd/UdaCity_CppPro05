@@ -2,10 +2,11 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(std::size_t grid_width, std::size_t grid_height)  // : snake( (int)grid_width, (int)grid_height)
+Game::Game(std::size_t grid_width, std::size_t grid_height) 
+  : snake(grid_width, grid_height)
 {
   std::cout << "Game : Initializing" << std::endl;
-  Snake snake( (int)grid_width, (int)grid_height);
+  // Snake snake( (int)grid_width, (int)grid_height);
   std::mt19937 engine(dev());
   std::uniform_int_distribution<int> random_w(0, static_cast<int>(grid_width ));
   std::uniform_int_distribution<int> random_h(0, static_cast<int>(grid_height));   
@@ -29,7 +30,7 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, snake, racket);
     Update();
-    renderer.Render(snake, ball, racket, food);
+    renderer.Render(snake, ball, racket, blocks, food);
 
     frame_end = SDL_GetTicks();
 
@@ -63,6 +64,11 @@ void Game::Update() {
   snake.Update();
   ball.UpdatePosition();
   racket.UpdatePosition();
+
+  if (checker.checkBallvsBlocks(ball, blocks))
+  {
+    score++;
+  }
 
   int new_x = static_cast<int>(snake.head_x);
   int new_y = static_cast<int>(snake.head_y);

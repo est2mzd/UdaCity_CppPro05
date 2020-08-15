@@ -38,7 +38,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Snake const snake, Ball ball, Racket racket,SDL_Point const &food)
+void Renderer::Render(Snake const snake, Ball ball, Racket racket,  Block_Multi blocks, SDL_Point const &food)
 {
   SDL_Rect block;
   block.w = screen_width / grid_width;    // set block width
@@ -66,6 +66,10 @@ void Renderer::Render(Snake const snake, Ball ball, Racket racket,SDL_Point cons
   //---------------------------------------------------------
   // Racket
   racket.render(sdl_renderer, block);
+
+  //---------------------------------------------------------
+  // Blocks
+  blocks.render(sdl_renderer, block);
 
   //---------------------------------------------------------
   // Render snake's body
