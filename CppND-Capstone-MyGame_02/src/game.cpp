@@ -55,8 +55,18 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
   }
 }
 
+#include <future>
 
 void Game::Update() {
+
+  // std::promise<void> prms;
+  // std::future<void> ftr = prms.get_future();
+  // std::thread t_1(xxx,xxx,xxx,xxx,);
+  // checkResult(std::move(ftr));
+  // t_1.join();
+
+  // std::future<void> ftr = std::async(xxx,xxx,xxx);
+  // ftr.get();
 
   ball.UpdatePosition();
   racket.UpdatePosition();
@@ -67,4 +77,3 @@ void Game::Update() {
 }
 
 int Game::GetScore() const { return score; }
-int Game::GetSize() const { return -9999; } // snake
