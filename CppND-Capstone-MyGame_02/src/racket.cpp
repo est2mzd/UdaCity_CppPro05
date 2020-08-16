@@ -11,70 +11,55 @@ Racket::Racket()
 void Racket::init()
 {
     std::cout << "Racket : Initializing" << std::endl;
-    setWindowSize(640, 640);
 
     // initial condition
     direction = RacketDirection::kNone;
-    pos_x  = _window_width  / 4.0;
-    pos_y  = _window_height / 2.0;
-    vel_x  = 0.1*10*10;
-    vel_y  = 0.0;
-    width  = 200.0;
-    height = 20.0;
-}
-
-void Racket::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)
-{
-  //---------------------------------------------------------
-  // Racket
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
-
-  block.w = width;  // set block width
-  block.h = height;           // set block height
-  block.x = pos_x;
-  block.y = pos_y;
-  SDL_RenderFillRect(sdl_renderer, &block);    
-}
-
-void Racket::checkCollideToWall()
-{
-    if ( pos_x < 0 )
-    {
-        pos_x = 0;
-    }
-    else if( (pos_x + width) > _window_width)
-    {
-        pos_x = _window_width - width;
-    }
+    _pos_x  = _window_width  / 4.0;
+    _pos_y  = _window_height / 2.0;
+    _vel_x  = 0.1*10*10;
+    _vel_y  = 0.0;
+    _width  = 200.0;
+    _height = 20.0;
 }
 
 
-void Racket::UpdatePosition()
+void Racket::update()
 {
+    // update position
+    this->updatePosition();
 
+    // stop positoin
+    checkCollisionToWall();
+}
+
+
+void Racket::updatePosition()
+{
     // check key input
     switch (direction) {
         case RacketDirection::kLeft:
-            pos_x -= vel_x;
+            _pos_x -= _vel_x;
             break;
 
         case RacketDirection::kRight:
-            pos_x += vel_x;
+            _pos_x += _vel_x;
             break;
 
         case RacketDirection::kNone:
-            pos_x = pos_x;
+            _pos_x = _pos_x;
             break;            
     }
-
-    // refrect at the wall
-    checkCollideToWall();
 }
 
 
-void Racket::setWindowSize(int width, int height)
+void Racket::checkCollisionToWall()
 {
-    _window_width  = width;
-    _window_height = height;
+    if ( _pos_x < 0 )
+    {
+        _pos_x = 0;
+    }
+    else if( (_pos_x + _width) > _window_width)
+    {
+        _pos_x = _window_width - _width;
+    }
 }
-

@@ -39,8 +39,8 @@ public:
     // special method
     void render(SDL_Renderer *sdl_renderer, SDL_Rect &block);
 
-    template <class BALL, class OTHEROBJ>
-    bool checkCollision(BALL& ball, OTHEROBJ& other_obj);
+    template <class SPHEHE, class OTHEROBJ>
+    bool checkCollision(SPHEHE& ball, OTHEROBJ& other_obj);
     void updatePosition();
 
     virtual void update(){};

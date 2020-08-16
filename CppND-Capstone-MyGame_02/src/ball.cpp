@@ -22,14 +22,33 @@ void Ball::init()
     _height = 5.0;
 }
 
-void Ball::update()
+// template <class SPHEHE, class OTHEROBJ>
+// bool BaseObject::checkCollision(SPHEHE& ball, OTHEROBJ& other_obj);
+
+// template <>
+// bool BaseObject::checkCollision<Ball, Racket>(Ball&, Racket&);
+
+// template <class Ball, class Racket> bool checkCollision<Ball, Racket>(Ball&, Racket&);
+// template <> bool checkCollision<Ball, Racket>(Ball&, Racket&);
+// bool checkCollision<Ball, Racket>(Ball&, Racket&);
+// bool checkCollision(Ball&, Racket&);
+
+void Ball::update(Racket& racket)
 {
     // update position
     BaseObject::updatePosition();
 
-    // update velocity for next simulation
+    // Wall : update velocity for next simulation
     checkCollisionToWall();
+
+    // Racket : update velocity for next simulation
+    BaseObject::checkCollision<Ball, Racket>(*this, racket);
 }
+
+// template <> bool BaseObject::checkCollision<Ball, Racket>(Ball&, Racket&);
+// template <class Ball, class Racket> bool BaseObject::checkCollision<Ball, Racket>(Ball&, Racket&);
+// template bool BaseObject::checkCollision<Ball, Racket>(Ball&, Racket&);
+// template bool checkCollision<Ball, Racket>(Ball&, Racket&);
 
 bool Ball::checkCollisionX()
 {

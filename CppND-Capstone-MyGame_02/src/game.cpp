@@ -68,8 +68,8 @@ void Game::Update() {
   // std::future<void> ftr = std::async(xxx,xxx,xxx);
   // ftr.get();
 
-  ball.update();
-  // racket.UpdatePosition();
+  ball.update(racket);
+  racket.update();
   // checker.checkBallvsRacket(ball, racket);
 
   // if (checker.checkBallvsBlocks(ball, blocks))

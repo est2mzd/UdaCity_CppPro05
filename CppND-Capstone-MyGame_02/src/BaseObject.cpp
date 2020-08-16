@@ -86,8 +86,8 @@ void BaseObject::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)
   SDL_RenderFillRect(sdl_renderer, &block);    
 }
 
-template <class BALL, class OTHEROBJ>
-bool BaseObject::checkCollision(BALL& ball, OTHEROBJ& other_obj)
+template <class SPHEHE, class OTHEROBJ>
+bool BaseObject::checkCollision(SPHEHE& ball, OTHEROBJ& other_obj)
 {
     float ball_center_x  = ball._pos_x + ball._width;
     float ball_center_y  = ball._pos_y + ball._height;
