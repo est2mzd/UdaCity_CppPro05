@@ -37,6 +37,9 @@ public:
     float vel_x, vel_y;
     float width, height;
 
+    // std::vector<std::thread> threads; // holds all threads that have been launced withing this object
+    static std::mutex _mtx;           // mutex shared by all objects for protecting cout
+
 protected:
     ObjectType _type;
     int _id;
@@ -44,10 +47,9 @@ protected:
 
     static int _window_width;
     static int _window_height;
-    
+
     // std::vector<std::thread> threads; // holds all threads that have been launced withing this object
-    // static std::mutex _mtx;           // mutex shared by all objects for protecting cout
-    
+
 private:
     static int _id_counter;
 };

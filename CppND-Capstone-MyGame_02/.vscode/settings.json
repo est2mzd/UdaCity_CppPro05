@@ -46,6 +46,7 @@
         "map": "cpp",
         "memory_resource": "cpp",
         "random": "cpp",
-        "string": "cpp"
+        "string": "cpp",
+        "mutex": "cpp"
     }
 }

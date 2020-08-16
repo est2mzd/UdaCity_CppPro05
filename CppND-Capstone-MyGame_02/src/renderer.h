@@ -15,7 +15,7 @@ class Renderer {
            const std::size_t grid_height);
   ~Renderer();
 
-  void Render(Ball ball, Racket racket,  Block_Multi blocks, SDL_Point const &food);
+  void Render(Ball ball, Racket racket,  Block_Multi blocks);
   void UpdateWindowTitle(int score, int fps);
 
  private:

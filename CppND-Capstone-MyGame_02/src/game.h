@@ -1,7 +1,7 @@
 #ifndef GAME_H
 #define GAME_H
 
-#include <random>
+// #include <random>
 #include "SDL.h"
 #include "controller.h"
 #include "renderer.h"
@@ -23,12 +23,6 @@ class Game {
   Racket racket;
   Block_Multi blocks;
   Collision_Check checker;
-  SDL_Point food;
-
-  std::random_device dev;
-  std::mt19937 engine;
-  std::uniform_int_distribution<int> random_w;
-  std::uniform_int_distribution<int> random_h;
 
   int score{0};
 

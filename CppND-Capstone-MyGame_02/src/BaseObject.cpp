@@ -6,10 +6,10 @@
 // init static variable
 int BaseObject::_id_counter = 0;
 
-// std::mutex BaseObject::_mtx;
+std::mutex BaseObject::_mtx;
 
-int BaseObject::_window_width;
-int BaseObject::_window_height;
+int BaseObject::_window_width  = 640;
+int BaseObject::_window_height = 640;
 
 // constructor
 BaseObject::BaseObject()

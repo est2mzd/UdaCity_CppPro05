@@ -8,7 +8,8 @@ Renderer::Renderer(const std::size_t screen_width,
     : screen_width(screen_width),
       screen_height(screen_height),
       grid_width(grid_width),
-      grid_height(grid_height) {
+      grid_height(grid_height) 
+{
   // Initialize SDL
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
@@ -38,7 +39,7 @@ Renderer::~Renderer() {
   SDL_Quit();
 }
 
-void Renderer::Render(Ball ball, Racket racket,  Block_Multi blocks, SDL_Point const &food)
+void Renderer::Render(Ball ball, Racket racket,  Block_Multi blocks)
 {
   SDL_Rect block;
  

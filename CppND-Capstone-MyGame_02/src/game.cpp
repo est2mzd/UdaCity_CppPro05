@@ -5,11 +5,6 @@
 Game::Game(std::size_t grid_width, std::size_t grid_height) 
 {
   std::cout << "Game : Initializing" << std::endl;
-  std::mt19937 engine(dev());
-  std::uniform_int_distribution<int> random_w(0, static_cast<int>(grid_width ));
-  std::uniform_int_distribution<int> random_h(0, static_cast<int>(grid_height));   
-  // Ball ball;     // this way calls copy-constructor, probably
-  // Racket racket;
 }
 
 void Game::Run(Controller const &controller, Renderer &renderer, std::size_t target_frame_duration) 
@@ -28,7 +23,7 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, racket);
     Update();
-    renderer.Render(ball, racket, blocks, food);
+    renderer.Render(ball, racket, blocks);
 
     frame_end = SDL_GetTicks();
 

@@ -60,6 +60,8 @@ bool Collision_Check::checkBallvsRacket(Ball& ball, Racket& racket)
     return false;
 }
 
+
+
 bool Collision_Check::checkSub(Ball& ball, float diff_x, float diff_y, float obj_w, float obj_h)
 {
     if ( fabs(diff_x) <= (ball.width + obj_w/2.0)  )
