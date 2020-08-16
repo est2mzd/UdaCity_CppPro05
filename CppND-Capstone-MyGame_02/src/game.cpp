@@ -68,12 +68,12 @@ void Game::Update() {
   // std::future<void> ftr = std::async(xxx,xxx,xxx);
   // ftr.get();
 
-  ball.update(racket);
+  ball.update();
   racket.update();
-  // checker.checkBallvsRacket(ball, racket);
+  checker.checkBallvsRacket(ball, racket);
 
-  // if (checker.checkBallvsBlocks(ball, blocks))
-  //   score++;
+  if (checker.checkBallvsBlocks(ball, blocks))
+    score++;
 }
 
 int Game::GetScore() const { return score; }

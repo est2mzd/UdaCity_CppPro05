@@ -13,7 +13,6 @@ public:
     Collision_Check();
     void init();
     
-    bool checkBallvsWall(Ball& ball);
     bool checkBallvsBlocks(Ball& ball, Block_Multi& blocks);
     bool checkBallvsRacket(Ball& ball, Racket& racket);
     bool checkSub(Ball& ball, float diff_x, float diff_y, float obj_w, float obj_h);

@@ -17,8 +17,6 @@ public:
   void update();
   RacketDirection direction;    
 
-
-
 private:
   void updatePosition();
   void checkCollisionToWall();

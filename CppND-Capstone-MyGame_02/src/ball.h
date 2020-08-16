@@ -5,20 +5,17 @@
 #include "SDL.h"
 #include "racket.h"
 
-class Racket;
-class Block;
-
 class Ball : public BaseObject 
 {
 public:
   Ball();
   void init();
-  void update(Racket& racket);
+  void update();
 
 private:
   bool checkCollisionX();
   bool checkCollisionY();
-  void checkCollisionToWall();  
+  void checkCollisionToWall();
 };
 
 #endif

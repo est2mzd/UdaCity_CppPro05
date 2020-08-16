@@ -14,16 +14,16 @@ void Ball::init()
     float vel_coef = 1/1.0;
 
     // initial condition
-    _pos_x  = _window_width  / 3.0;
-    _pos_y  = _window_height / 2.0;
-    _vel_x  = -3.0 * vel_coef;
-    _vel_y  = -1.0 * vel_coef;
-    _width  = 5.0;
-    _height = 5.0;
+    pos_x  = _window_width  / 3.0;
+    pos_y  = _window_height / 2.0;
+    vel_x  = -3.0 * vel_coef;
+    vel_y  = -1.0 * vel_coef;
+    width  = 5.0;
+    height = 5.0;
 }
 
 
-void Ball::update(Racket& racket)
+void Ball::update()
 {
     // update position
     BaseObject::updatePosition();
@@ -31,18 +31,14 @@ void Ball::update(Racket& racket)
     // Wall : update velocity for next simulation
     checkCollisionToWall();
 
-    // Racket : update velocity for next simulation
-    BaseObject::checkCollision<Ball, Racket>(*this, racket);
 }
-
-// template bool BaseObject::checkCollision<Ball, Racket>(Ball&, Racket&);
 
 
 bool Ball::checkCollisionX()
 {
-    float pos_center = _pos_x + _width;
+    float pos_center = pos_x + width;
 
-    if ( (pos_center > (_window_width - _width)) || (pos_center < _width) ) 
+    if ( (pos_center > (_window_width - width)) || (pos_center < width) ) 
         return true;
 
     return false;
@@ -50,9 +46,9 @@ bool Ball::checkCollisionX()
 
 bool Ball::checkCollisionY()
 {
-    float pos_center = _pos_y + _height;
+    float pos_center = pos_y + height;
 
-    if ( (pos_center > (_window_height - _height)) || (pos_center < _height) )
+    if ( (pos_center > (_window_height - height)) || (pos_center < height) )
         return true;
 
     return false;
@@ -63,14 +59,12 @@ void Ball::checkCollisionToWall()
     // refrect at the wall
     if (checkCollisionX())
     {
-        _vel_x = _vel_x * (-1.0);
+        vel_x = vel_x * (-1.0);
     }
 
     if (checkCollisionY())
     {
-        _vel_y = _vel_y * (-1.0);
+        vel_y = vel_y * (-1.0);
     }    
 
 }
-
-
