@@ -8,6 +8,8 @@ int BaseObject::_id_counter = 0;
 
 // std::mutex BaseObject::_mtx;
 
+int BaseObject::_window_width;
+int BaseObject::_window_height;
 
 // constructor
 BaseObject::BaseObject()
@@ -21,13 +23,13 @@ BaseObject::BaseObject()
 // destructor
 BaseObject::~BaseObject()
 {
-    /*
+    
     // set up thread barrier before this object is destroyed
-    std::for_each( threads.begin(), 
-                   threads.end(),
-                   [](std::thread &t){ t.join(); } 
-                );
-    */
+    // std::for_each( threads.begin(), 
+    //                threads.end(),
+    //                [](std::thread &t){ t.join(); } 
+    //             );
+    
 }
 
 // getter / setter
