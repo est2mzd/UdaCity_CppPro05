@@ -34,12 +34,14 @@ public:
     ObjectType getType(){ return _type;};
     int getID(){ return _id;};
     bool getActiveStatus(){ return _is_active;}
+    void setWindowSize(int width, int height);
 
     // special method
     void render(SDL_Renderer *sdl_renderer, SDL_Rect &block);
 
     template <class BALL, class OTHEROBJ>
     bool checkCollision(BALL& ball, OTHEROBJ& other_obj);
+    void updatePosition();
 
 protected:
     ObjectType _type;
@@ -49,6 +51,9 @@ protected:
     float _pos_x, _pos_y;
     float _vel_x, _vel_y;
     float _width, _height;
+
+    int   _window_width;
+    int   _window_height;
 
     std::vector<std::thread> threads; // holds all threads that have been launced withing this object
     static std::mutex _mtx;           // mutex shared by all objects for protecting cout

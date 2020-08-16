@@ -64,6 +64,12 @@ void BaseObject::getSize(float &w, float &h)
     h = _height;
 }
 
+void BaseObject::setWindowSize(int width, int height)
+{
+    _window_width  = width;
+    _window_height = height;
+}
+
 void BaseObject::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)
 {
   SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
@@ -76,7 +82,7 @@ void BaseObject::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)
 }
 
 template <class BALL, class OTHEROBJ>
-bool checkCollision(BALL& ball, OTHEROBJ& other_obj)
+bool BaseObject::checkCollision(BALL& ball, OTHEROBJ& other_obj)
 {
     float ball_center_x  = ball._pos_x + ball._width;
     float ball_center_y  = ball._pos_y + ball._height;
@@ -120,3 +126,10 @@ bool checkCollision(BALL& ball, OTHEROBJ& other_obj)
 
     return false;
 }
+
+
+void BaseObject::updatePosition()
+{
+    _pos_x += _vel_x;
+    _pos_y += _vel_y;
+}    
