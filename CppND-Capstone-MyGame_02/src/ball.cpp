@@ -20,7 +20,7 @@ void Ball::init()
     pos_y  = _window_height / 2.0;
     vel_x  = -3.0 * vel_coef;
     vel_y  = -1.0 * vel_coef;
-    radius = 5.0;
+    radius = 5.000000;
 }
 
 void Ball::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)
