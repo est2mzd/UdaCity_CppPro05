@@ -26,7 +26,7 @@ public:
     void getPosition(float &x, float &y);
 
     void setVelocity(float  vx, float  vy);
-    void getPosition(float &vx, float &vy);
+    void getVelocity(float &vx, float &vy);
 
     void setSize(float  w, float  h);
     void getSize(float &w, float &h);
@@ -43,6 +43,10 @@ public:
     bool checkCollision(BALL& ball, OTHEROBJ& other_obj);
     void updatePosition();
 
+    virtual void update(){};
+
+
+
 protected:
     ObjectType _type;
     int _id;
@@ -52,11 +56,13 @@ protected:
     float _vel_x, _vel_y;
     float _width, _height;
 
-    int   _window_width;
-    int   _window_height;
+    int _window_width;
+    int _window_height;
 
+    /*
     std::vector<std::thread> threads; // holds all threads that have been launced withing this object
     static std::mutex _mtx;           // mutex shared by all objects for protecting cout
+    */
 
 private:
     static int _id_counter;

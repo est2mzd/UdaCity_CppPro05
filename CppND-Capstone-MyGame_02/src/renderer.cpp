@@ -53,11 +53,11 @@ void Renderer::Render(Ball ball, Racket racket,  Block_Multi blocks, SDL_Point c
 
   //---------------------------------------------------------
   // Racket
-  racket.render(sdl_renderer, block);
+  // racket.render(sdl_renderer, block);
 
   //---------------------------------------------------------
   // Blocks
-  blocks.render(sdl_renderer, block);
+  // blocks.render(sdl_renderer, block);
 
   //---------------------------------------------------------
   // Update Screen

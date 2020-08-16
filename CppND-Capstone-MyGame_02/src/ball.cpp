@@ -11,34 +11,31 @@ void Ball::init()
 {
     std::cout << "Ball : Initializing" << std::endl;
 
-    setWindowSize(640, 640);
-
     float vel_coef = 1/1.0;
 
     // initial condition
-    pos_x  = _window_width  / 3.0;
-    pos_y  = _window_height / 2.0;
-    vel_x  = -3.0 * vel_coef;
-    vel_y  = -1.0 * vel_coef;
-    radius = 5.000000;
+    _pos_x  = _window_width  / 3.0;
+    _pos_y  = _window_height / 2.0;
+    _vel_x  = -3.0 * vel_coef;
+    _vel_y  = -1.0 * vel_coef;
+    _width  = 5.0;
+    _height = 5.0;
 }
 
-void Ball::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)
+void Ball::update()
 {
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    // update position
+    BaseObject::updatePosition();
 
-  block.w = radius*2.0;  // set block width
-  block.h = radius*2.0;  // set block height
-  block.x = pos_x;
-  block.y = pos_y;
-  SDL_RenderFillRect(sdl_renderer, &block);  
+    // update velocity for next simulation
+    checkCollisionToWall();
 }
 
 bool Ball::checkCollisionX()
 {
-    float pos_center = pos_x + radius;
+    float pos_center = _pos_x + _width;
 
-    if ( (pos_center > (_window_width - radius)) || (pos_center < radius) ) 
+    if ( (pos_center > (_window_width - _width)) || (pos_center < _width) ) 
         return true;
 
     return false;
@@ -46,36 +43,27 @@ bool Ball::checkCollisionX()
 
 bool Ball::checkCollisionY()
 {
-    float pos_center = pos_y + radius;
+    float pos_center = _pos_y + _height;
 
-    if ( (pos_center > (_window_height - radius)) || (pos_center < radius) )
+    if ( (pos_center > (_window_height - _height)) || (pos_center < _height) )
         return true;
 
     return false;
 }
 
-void Ball::UpdatePosition()
+void Ball::checkCollisionToWall()
 {
-    pos_x += vel_x;
-    pos_y += vel_y;
-
     // refrect at the wall
     if (checkCollisionX())
     {
-        vel_x = vel_x * (-1.0);
+        _vel_x = _vel_x * (-1.0);
     }
 
     if (checkCollisionY())
     {
-        vel_y = vel_y * (-1.0);
+        _vel_y = _vel_y * (-1.0);
     }    
 
 }
 
-
-void Ball::setWindowSize(int width, int height)
-{
-    _window_width  = width;
-    _window_height = height;
-}
 

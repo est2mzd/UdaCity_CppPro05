@@ -1,27 +1,20 @@
 #ifndef BALL_H
 #define BALL_H
 
-#include <vector>
+#include "BaseObject.h"
 #include "SDL.h"
 
-class Ball {
- public:
-   Ball();
-   void init();
-   void render(SDL_Renderer *sdl_renderer, SDL_Rect &block);
+class Ball : public BaseObject 
+{
+public:
+  Ball();
+  void init();
+  void update();
 
-   float pos_x;
-   float pos_y;
-   float vel_x;
-   float vel_y;
-   float radius;
-   void UpdatePosition();
-   void setWindowSize(int width, int height);
-   bool checkCollisionX();
-   bool checkCollisionY();
- private:
-   int   _window_width;
-   int   _window_height;
+private:
+  bool checkCollisionX();
+  bool checkCollisionY();
+  void checkCollisionToWall();  
 };
 
 #endif
