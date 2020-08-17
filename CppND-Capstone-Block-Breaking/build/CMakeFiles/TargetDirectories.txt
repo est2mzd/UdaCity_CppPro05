@@ -1,3 +1,0 @@
-/home/takuya/work/UdaCity_CppPro05/CppND-Capstone-Block-Breaking/build/CMakeFiles/rebuild_cache.dir
-/home/takuya/work/UdaCity_CppPro05/CppND-Capstone-Block-Breaking/build/CMakeFiles/Block_Breaking.dir
-/home/takuya/work/UdaCity_CppPro05/CppND-Capstone-Block-Breaking/build/CMakeFiles/edit_cache.dir
