@@ -1,6 +1,6 @@
 #include <iostream>
 #include <algorithm>
-#include "controller.h"
+// #include "controller.h"
 #include "game.h"
 #include "renderer.h"
 
@@ -32,7 +32,7 @@ int main()
 
   int num_row_blocks  =  2;
   int num_col_blocks  = 10;
-  int num_ball        =  2;
+  int num_ball        = 5;
   float velocity_ball = 1.0;
   // user input parameters < End >
   
@@ -46,7 +46,7 @@ int main()
   std::vector<std::shared_ptr<Block>> blocks;
   std::vector<std::shared_ptr<Ball>>  balls;
   std::shared_ptr<Racket> racket (new Racket);
-  std::shared_ptr<Controller> controller (new Controller);
+  // std::shared_ptr<Controller> controller (new Controller);
   std::shared_ptr<Renderer> renderer (new Renderer);
 
   createBlocks(blocks, window_width, window_height, num_row_blocks, num_col_blocks);
@@ -54,12 +54,13 @@ int main()
   
   for_each( balls.begin(), 
             balls.end(),
-            [&blocks, &racket] (std::shared_ptr<Ball> &b) { b->simulate(blocks, racket); }
+            [&blocks, &racket, &milli_sec_per_frame] (std::shared_ptr<Ball> &b) { b->simulate(blocks, racket, milli_sec_per_frame); }
            );
 
   renderer->createWindow(window_width, window_height);
-  renderer->simulate(controller, blocks, balls, racket, milli_sec_per_frame);
-
+  renderer->simulate(blocks, balls, racket, milli_sec_per_frame);
+  racket->simulate();
+  
   // Renderer renderer(window_width, window_height);
   // Controller controller;
   // Game game;

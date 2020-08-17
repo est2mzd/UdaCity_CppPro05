@@ -3,7 +3,7 @@
 
 #include <vector>
 #include "SDL.h"
-#include "controller.h"
+// #include "controller.h"
 #include "ball.h"
 #include "racket.h"
 #include "Block.h"
@@ -21,15 +21,13 @@ class Renderer : public std::enable_shared_from_this<Renderer>
   void UpdateWindowTitle(int score, int fps);
 
 
-  void simulate(std::shared_ptr<Controller> controller, 
-                std::vector<std::shared_ptr<Block>> blocks, 
+  void simulate(std::vector<std::shared_ptr<Block>> blocks, 
                 std::vector<std::shared_ptr<Ball>> balls,
                 std::shared_ptr<Racket> racket,
                 std::size_t target_frame_duration
                 );
 
-  void render(std::shared_ptr<Controller> controller, 
-                std::vector<std::shared_ptr<Block>> blocks, 
+  void render(  std::vector<std::shared_ptr<Block>> blocks, 
                 std::vector<std::shared_ptr<Ball>> balls,
                 std::shared_ptr<Racket> racket,
                 std::size_t target_frame_duration

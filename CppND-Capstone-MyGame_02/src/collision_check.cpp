@@ -3,12 +3,27 @@
 #include <iostream>
 #include <cmath>
 #include <string>
+#include <algorithm>
 
 // constructor
 Collision_Check::Collision_Check()
 {
 
 }
+
+Collision_Check::~Collision_Check()
+{
+  std::cout << "Collision_Check::~Collision_Check()" <<std::endl;
+  
+  // set up thread barrier before this object is destroyed
+  std::for_each( threads.begin(), 
+                 threads.end(),
+                 [](std::thread &t){ t.join(); } 
+              );
+}
+
+
+
 
 // initilizer
 void Collision_Check::init()

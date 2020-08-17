@@ -4,7 +4,8 @@
 #include "racket.h"
 #include <memory>
 
-class Controller {
+class Controller 
+{
  public:
   void HandleInput(bool &running, std::shared_ptr<Racket> racket) const;
 };

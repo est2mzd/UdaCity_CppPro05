@@ -82,13 +82,55 @@ void Ball::checkCollisionToWall()
 }
 
 
-void Ball::simulate(std::vector<std::shared_ptr<Block>> blocks, std::shared_ptr<Racket> racket)
+void Ball::simulate(std::vector<std::shared_ptr<Block>> blocks, std::shared_ptr<Racket> racket, int milli_sec_per_frame)
 {
     // launch calc function in a thread
-    threads.emplace_back(std::thread(&Ball::calc, this));
+    // threads.emplace_back(std::thread(&Ball::calc, this, milli_sec_per_frame));
+    threads.emplace_back(std::thread(&Ball::calc2, this));
 }
 
-void Ball::calc()
+void Ball::calc(int milli_sec_per_frame)
+{
+    // print if of the current thread
+    std::unique_lock<std::mutex> lock_u(_mtx);
+    std::cout << "Ball #" << _id << "::go thread id = " << std::this_thread::get_id() << std::endl;
+    lock_u.unlock();
+
+    std::cout << "Ball::calc()" << std::endl;
+    Uint32 title_timestamp = SDL_GetTicks();
+    Uint32 frame_start;
+    Uint32 frame_end;
+    Uint32 frame_duration;
+    int frame_count = 0;
+    bool running = true;
+
+    while (running) 
+    {
+        // pre - procedure
+        frame_start = SDL_GetTicks();        
+        // std::this_thread::sleep_for(std::chrono::milliseconds(1));
+
+        //-----------------------------------------------//
+        // update position
+        BaseObject::updatePosition();
+
+        // Wall : update velocity for next simulation
+        checkCollisionToWall();
+        //-----------------------------------------------//
+
+        // post - procedure
+        frame_end = SDL_GetTicks();
+
+        frame_duration = frame_end - frame_start;
+
+        if (frame_duration < milli_sec_per_frame) 
+        {
+            SDL_Delay(milli_sec_per_frame - frame_duration);
+        }
+    }
+}
+
+void Ball::calc2()
 {
     // print if of the current thread
     std::unique_lock<std::mutex> lock_u(_mtx);
@@ -97,7 +139,7 @@ void Ball::calc()
 
     while(true)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(1));
+        std::this_thread::sleep_for(std::chrono::milliseconds(10));
         // update position
         BaseObject::updatePosition();
 

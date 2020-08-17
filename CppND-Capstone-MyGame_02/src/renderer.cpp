@@ -16,6 +16,7 @@ Renderer::Renderer()
 Renderer::~Renderer() {
 
   std::cout << "Renderer::~Renderer()" <<std::endl;
+  
   // set up thread barrier before this object is destroyed
   std::for_each( threads.begin(), 
                  threads.end(),
@@ -99,8 +100,7 @@ void Renderer::UpdateWindowTitle(int score, int fps)
 }
 
 
-void Renderer::simulate(std::shared_ptr<Controller> controller, 
-                        std::vector<std::shared_ptr<Block>> blocks, 
+void Renderer::simulate(std::vector<std::shared_ptr<Block>> blocks, 
                         std::vector<std::shared_ptr<Ball>> balls,
                         std::shared_ptr<Racket> racket,
                         std::size_t target_frame_duration)
@@ -108,7 +108,6 @@ void Renderer::simulate(std::shared_ptr<Controller> controller,
     std::cout << "Renderer::simulate" << std::endl;
     // launch render function in a thread
     threads.emplace_back(std::thread(&Renderer::render, this, 
-                         controller, 
                          blocks, 
                          balls,
                          racket,
@@ -118,8 +117,7 @@ void Renderer::simulate(std::shared_ptr<Controller> controller,
 
 
 
-void Renderer::render( std::shared_ptr<Controller> controller, 
-                         std::vector<std::shared_ptr<Block>> blocks, 
+void Renderer::render(   std::vector<std::shared_ptr<Block>> blocks, 
                          std::vector<std::shared_ptr<Ball>> balls,
                          std::shared_ptr<Racket> racket,
                          std::size_t target_frame_duration ) 
@@ -134,13 +132,9 @@ void Renderer::render( std::shared_ptr<Controller> controller,
 
   while (running) 
   {
+    //---------------------------------------------------------
     // pre - procedure
     frame_start = SDL_GetTicks();
-
-    // main procedure
-    
-    // Input, Update, Render - the main game loop.
-    // controller->HandleInput(running, racket);
 
     //---------------------------------------------------------
     // Rendering <Start>
@@ -167,8 +161,9 @@ void Renderer::render( std::shared_ptr<Controller> controller,
     SDL_RenderPresent(sdl_renderer);
     
     // Rendering <End>
-    //---------------------------------------------------------
 
+
+    //---------------------------------------------------------
     // post - procedure
     frame_end = SDL_GetTicks();
 
