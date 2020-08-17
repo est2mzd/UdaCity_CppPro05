@@ -63,7 +63,7 @@ bool Collision_Check::checkBallvsBlocks(std::shared_ptr<Ball>  ball, std::vector
 
     for(auto b : blocks)
     {
-        if (b->is_active)
+        if (b->_is_active)
         {
             float block_center_x = b->pos_x + b->width/2.0;
             float block_center_y = b->pos_y + b->height/2.0;
@@ -73,7 +73,7 @@ bool Collision_Check::checkBallvsBlocks(std::shared_ptr<Ball>  ball, std::vector
             if ( checkSub(ball, diff_x, diff_y, b->width, b->height) )
             {
                 //  deactivate block
-                b->is_active = false;
+                b->_is_active = false;
                 return true;
             }
         }  

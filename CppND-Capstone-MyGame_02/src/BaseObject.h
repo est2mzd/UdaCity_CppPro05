@@ -40,11 +40,12 @@ public:
     static void setMsPerFrame(int mspf){ _milli_sec_per_frame = mspf;}
     static void setWindowSize(int width, int height);
     static void printWindowSize();
+    bool _is_active; // if deactivated, the object is not rendered.
 
 protected:
     ObjectType _type;
     int _id;
-    bool _is_active; // if deactivated, the object is not rendered.
+    
 
     static int _milli_sec_per_frame;
     static int _window_width;

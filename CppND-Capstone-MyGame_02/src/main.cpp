@@ -34,7 +34,7 @@ int main()
 
   int num_row_blocks  =  2;
   int num_col_blocks  = 10;
-  int num_ball        = 1;
+  int num_ball        = 5;
   float velocity_ball = 1.0;
   // user input parameters < End >
   

@@ -17,6 +17,7 @@ BaseObject::BaseObject()
 {
     _type = ObjectType::none;
     _id   = _id_counter_all++;
+    _is_active = true;
     // setWindowSize(640, 640);
 }
 
@@ -41,15 +42,17 @@ void BaseObject::setWindowSize(int width, int height)
 
 void BaseObject::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)
 {
-  SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
+    if (_is_active)
+    {
+        SDL_SetRenderDrawColor(sdl_renderer, 0xFF, 0xFF, 0xFF, 0xFF);
 
-  block.w = width;  // set block width
-  block.h = height;           // set block height
-  block.x = pos_x;
-  block.y = pos_y;
-  SDL_RenderFillRect(sdl_renderer, &block);    
+        block.w = width;  // set block width
+        block.h = height;           // set block height
+        block.x = pos_x;
+        block.y = pos_y;
+        SDL_RenderFillRect(sdl_renderer, &block);    
+    }
 }
-
 void BaseObject::updatePosition()
 {
     pos_x += vel_x;

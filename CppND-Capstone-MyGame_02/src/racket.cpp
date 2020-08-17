@@ -97,7 +97,7 @@ void Racket::calc()
     
     while(true)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        std::this_thread::sleep_for(std::chrono::milliseconds(50));
         // get key input 
         this->HandleInput(this->running); 
 

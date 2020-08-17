@@ -9,7 +9,6 @@ Block::Block()
     // type & id
     _type = ObjectType::block;
     _id   = _id_counter++;
-    is_active = true;
 
     // common initial condition
     vel_x  = 0.0;

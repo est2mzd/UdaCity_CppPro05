@@ -10,7 +10,6 @@ public:
     Block();
     void setProperty(float x, float y, float w, float h);
     void update();
-    bool is_active;
 private:
     static int _id_counter;
     
