@@ -3,7 +3,6 @@
 
 #include <vector>
 #include "SDL.h"
-// #include "controller.h"
 #include "ball.h"
 #include "racket.h"
 #include "Block.h"

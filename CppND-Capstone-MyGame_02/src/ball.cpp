@@ -29,23 +29,6 @@ void Ball::setProperty(float x, float y, float vx, float vy)
 }
 
 
-void Ball::init()
-{
-
-}
-
-
-void Ball::update()
-{
-    // // update position
-    // BaseObject::updatePosition();
-
-    // // Wall : update velocity for next simulation
-    // checkCollisionToWall();
-
-}
-
-
 bool Ball::checkCollisionX()
 {
     float pos_center = pos_x + width;
@@ -85,11 +68,11 @@ void Ball::checkCollisionToWall()
 void Ball::simulate(std::vector<std::shared_ptr<Block>> blocks, std::shared_ptr<Racket> racket, int milli_sec_per_frame)
 {
     // launch calc function in a thread
-    // threads.emplace_back(std::thread(&Ball::calc, this, milli_sec_per_frame));
+    // threads.emplace_back(std::thread(&Ball::calc1, this, milli_sec_per_frame));
     threads.emplace_back(std::thread(&Ball::calc2, this));
 }
 
-void Ball::calc(int milli_sec_per_frame)
+void Ball::calc1(int milli_sec_per_frame)
 {
     // print if of the current thread
     std::unique_lock<std::mutex> lock_u(_mtx);

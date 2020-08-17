@@ -12,10 +12,8 @@ class Ball : public BaseObject, public std::enable_shared_from_this<Ball>
 public:
   Ball();
   void setProperty(float x, float y, float vel_x, float vel_y);
-  void init();
-  void update();
   void simulate(std::vector<std::shared_ptr<Block>> blocks, std::shared_ptr<Racket> racket, int milli_sec_per_frame);
-  void calc(int milli_sec_per_frame);
+  void calc1(int milli_sec_per_frame);
   void calc2();
 
 private:

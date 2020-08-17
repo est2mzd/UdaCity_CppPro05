@@ -1,6 +1,5 @@
 #include <iostream>
 #include <algorithm>
-// #include "controller.h"
 #include "renderer.h"
 
 #include "BaseObject.h"
@@ -21,9 +20,6 @@ void createBalls(std::vector<std::shared_ptr<Ball>> &balls,
                  int window_width, int window_height, 
                  int num_ball, float velocity,
                  std::vector<std::shared_ptr<Collision_Check>> &checkers);
-
-// void createBlocks(std::vector<std::shared_ptr<Block>> &, int, int, int, int);
-// void createBalls(std::vector<std::shared_ptr<Ball>> &, int, int, int, float);
 
 int main() 
 {
@@ -84,26 +80,10 @@ int main()
     checkers.at(i)->simulateBallvsBlocks(balls.at(i), blocks);
   }
 
-
-
-  // for(int i=0; i < checkers.size(); i++)
-  // {
-  //   checkers.at(i)->simulateBallvsRacket(balls.at(i), racket);
-  // }
-
-  // for()
-
-
-  // Renderer renderer(window_width, window_height);
-  // Controller controller;
-  // Game game;
-  // game.Run(controller, renderer, milli_sec_per_frame);
-  // std::cout << "Game has terminated successfully!\n";
+  std::cout << "Game has terminated successfully!\n";
   // std::cout << "Score: " << game.GetScore() << "\n";
-  
-  
-
-  // return 0;
+ 
+  return 0;
 }
 
 //**************************************************************************//

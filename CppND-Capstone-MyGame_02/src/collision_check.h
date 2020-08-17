@@ -11,7 +11,6 @@ class Collision_Check
 public:
     Collision_Check();
     ~Collision_Check();
-    void init();
     
     bool checkBallvsBlocks(std::shared_ptr<Ball>  ball, std::vector<std::shared_ptr<Block>> blocks);
     bool checkBallvsRacket(std::shared_ptr<Ball>  ball, std::shared_ptr<Racket> racket);

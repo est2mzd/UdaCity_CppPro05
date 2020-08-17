@@ -24,10 +24,3 @@ void Block::setProperty(float x, float y, float w, float h)
     width  = w;
     height = h;
 }
-
-
-void Block::update()
-{
-
-
-}

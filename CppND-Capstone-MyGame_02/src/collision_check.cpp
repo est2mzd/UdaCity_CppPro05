@@ -11,6 +11,7 @@ Collision_Check::Collision_Check()
     std::cout << "Collision_Check::Collision_Check()" <<std::endl;
 }
 
+
 Collision_Check::~Collision_Check()
 {
   std::cout << "Collision_Check::~Collision_Check()" <<std::endl;
@@ -20,13 +21,6 @@ Collision_Check::~Collision_Check()
                  threads.end(),
                  [](std::thread &t){ t.join(); } 
               );
-}
-
-
-// initilizer
-void Collision_Check::init()
-{
-
 }
 
 
@@ -40,11 +34,6 @@ void Collision_Check::simulateBallvsBlocks(std::shared_ptr<Ball>  ball, std::vec
 
 void Collision_Check::calcBallvsBlocks(std::shared_ptr<Ball>  ball, std::vector<std::shared_ptr<Block>> blocks)
 {
-    // print if of the current thread
-    // std::unique_lock<std::mutex> lock_u(_mtx);
-    // std::cout << "Ball #" << _id << "::go thread id = " << std::this_thread::get_id() << std::endl;
-    // lock_u.unlock();
-
     std::cout << "Collision_Check::calcBallvsBlocks()" << std::endl;
     bool running = ball->running;
     
@@ -93,11 +82,6 @@ void Collision_Check::simulateBallvsRacket(std::shared_ptr<Ball>  ball, std::sha
 
 void Collision_Check::calcBallvsRacket(std::shared_ptr<Ball>  ball, std::shared_ptr<Racket> racket)
 {
-    // print if of the current thread
-    // std::unique_lock<std::mutex> lock_u(_mtx);
-    // std::cout << "Ball #" << _id << "::go thread id = " << std::this_thread::get_id() << std::endl;
-    // lock_u.unlock();
-
     std::cout << "Collision_Check::calcBallvsRacket()" << std::endl;
     bool running = ball->running;
     
