@@ -2,7 +2,7 @@
 #include <iostream>
 #include "SDL.h"
 
-Game::Game(std::size_t grid_width, std::size_t grid_height) 
+Game::Game() 
 {
   std::cout << "Game : Initializing" << std::endl;
 }
@@ -20,10 +20,13 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
   {
     frame_start = SDL_GetTicks();
 
+    /*
     // Input, Update, Render - the main game loop.
     controller.HandleInput(running, racket);
     Update();
     renderer.Render(ball, racket, blocks);
+    */
+
 
     frame_end = SDL_GetTicks();
 
@@ -54,21 +57,23 @@ void Game::Run(Controller const &controller, Renderer &renderer, std::size_t tar
 
 void Game::Update() {
 
+  // This is Memo
   // std::promise<void> prms;
   // std::future<void> ftr = prms.get_future();
   // std::thread t_1(xxx,xxx,xxx,xxx,);
   // checkResult(std::move(ftr));
   // t_1.join();
-
   // std::future<void> ftr = std::async(xxx,xxx,xxx);
   // ftr.get();
 
+  /*
   ball.update();
   racket.update();
   checker.checkBallvsRacket(ball, racket);
 
   if (checker.checkBallvsBlocks(ball, blocks))
     score++;
+  */
 }
 
 int Game::GetScore() const { return score; }

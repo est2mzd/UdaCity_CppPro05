@@ -4,19 +4,19 @@
 #include "BaseObject.h"
 
 // init static variable
-int BaseObject::_id_counter = 0;
+int BaseObject::_id_counter_all = 0;
 
 std::mutex BaseObject::_mtx;
 
-int BaseObject::_window_width  = 640;
-int BaseObject::_window_height = 640;
+int BaseObject::_window_width  = 300;
+int BaseObject::_window_height = 300;
 
 // constructor
 BaseObject::BaseObject()
 {
     _type = ObjectType::none;
-    _id   = _id_counter++;
-    setWindowSize(640, 640);
+    _id   = _id_counter_all++;
+    // setWindowSize(640, 640);
 }
 
 
@@ -54,3 +54,8 @@ void BaseObject::updatePosition()
     pos_x += vel_x;
     pos_y += vel_y;
 }    
+
+void BaseObject::printWindowSize()
+{
+    std::cout << "Window : width = " << _window_width << " / height = " << _window_height << std::endl;
+}

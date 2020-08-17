@@ -2,24 +2,34 @@
 #include <cmath>
 #include <iostream>
 
+// initialize static variable
+int Ball::_id_counter = 0;
+
 Ball::Ball()
 {
-    init();
+    // type & id
+    _type = ObjectType::ball;
+    _id   = _id_counter++;
+
+    // common initial condition
+    width  = 5.0;
+    height = 5.0;
+
+    std::cout << "Ball ID : " << _id << " Initializing" << std::endl;
 }
+
+void Ball::setProperty(float x, float y, float vx, float vy)
+{
+    pos_x  = x;
+    pos_y  = y;
+    vel_x  = vx;
+    vel_y  = vy;
+}
+
 
 void Ball::init()
 {
-    std::cout << "Ball : Initializing" << std::endl;
 
-    float vel_coef = 1/1.0;
-
-    // initial condition
-    pos_x  = _window_width  / 3.0;
-    pos_y  = _window_height / 2.0;
-    vel_x  = -3.0 * vel_coef;
-    vel_y  = -1.0 * vel_coef;
-    width  = 5.0;
-    height = 5.0;
 }
 
 
