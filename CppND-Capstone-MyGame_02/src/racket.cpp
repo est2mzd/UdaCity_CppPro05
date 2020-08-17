@@ -93,13 +93,12 @@ void Racket::calc()
     // lock_u.unlock();
 
     std::cout << "Racket::calc()" << std::endl;
-    bool running = true;
     
-    while(true)
+    while(running)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(50));
         // get key input 
-        this->HandleInput(this->running); 
+        HandleInput(); 
 
         // update position
         updatePosition();
@@ -110,7 +109,7 @@ void Racket::calc()
 }
 
 
-void Racket::HandleInput(bool& running)
+void Racket::HandleInput()
 {
   SDL_Event e;
 

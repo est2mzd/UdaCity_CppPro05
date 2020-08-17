@@ -23,9 +23,6 @@ void Block::setProperty(float x, float y, float w, float h)
     pos_y  = y;
     width  = w;
     height = h;
-
-    // std::cout << x << "," << y << "," << w << "," << h << std::endl;
-    // std::cout << pos_x << "," << pos_y << "," << width << "," << height << std::endl;
 }
 
 

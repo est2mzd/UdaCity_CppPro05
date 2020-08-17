@@ -46,12 +46,13 @@ void Collision_Check::calcBallvsBlocks(std::shared_ptr<Ball>  ball, std::vector<
     // lock_u.unlock();
 
     std::cout << "Collision_Check::calcBallvsBlocks()" << std::endl;
-    bool running = true;
+    bool running = ball->running;
     
-    while(true)
+    while(running)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(5)); 
         checkBallvsBlocks(ball, blocks);
+        running = ball->running;
     }
 }
 
@@ -98,12 +99,13 @@ void Collision_Check::calcBallvsRacket(std::shared_ptr<Ball>  ball, std::shared_
     // lock_u.unlock();
 
     std::cout << "Collision_Check::calcBallvsRacket()" << std::endl;
-    bool running = true;
+    bool running = ball->running;
     
-    while(true)
+    while(running)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(5)); 
         checkBallvsRacket(ball, racket);
+        running = ball->running;
     }
 }
 

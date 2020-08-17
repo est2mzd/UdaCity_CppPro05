@@ -41,12 +41,12 @@ public:
     static void setWindowSize(int width, int height);
     static void printWindowSize();
     bool _is_active; // if deactivated, the object is not rendered.
+    static bool running;
 
 protected:
     ObjectType _type;
     int _id;
     
-
     static int _milli_sec_per_frame;
     static int _window_width;
     static int _window_height;
@@ -54,6 +54,7 @@ protected:
     std::vector<std::thread> threads; // holds all threads that have been launced withing this object
     static std::mutex _mtx;           // mutex shared by all objects for protecting cout
 
+    
 
 private:
     static int _id_counter_all;

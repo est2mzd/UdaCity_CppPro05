@@ -21,13 +21,10 @@ public:
   void simulate();
   void calc();
 
-  bool running;
-
 private:
   void updatePosition();
   void checkCollisionToWall();
-  void HandleInput(bool& running);
-  // std::vector<std::thread> threads;
+  void HandleInput();
 };
 
 #endif

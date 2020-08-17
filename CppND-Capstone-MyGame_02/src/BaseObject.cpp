@@ -7,6 +7,7 @@
 int BaseObject::_id_counter_all = 0;
 
 std::mutex BaseObject::_mtx;
+bool BaseObject::running;
 
 int BaseObject::_milli_sec_per_frame = (int)(1000/60);
 int BaseObject::_window_width  = 300;
@@ -18,7 +19,7 @@ BaseObject::BaseObject()
     _type = ObjectType::none;
     _id   = _id_counter_all++;
     _is_active = true;
-    // setWindowSize(640, 640);
+    running = true;
 }
 
 

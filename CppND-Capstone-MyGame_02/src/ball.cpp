@@ -137,7 +137,7 @@ void Ball::calc2()
     std::cout << "Ball #" << _id << "::go thread id = " << std::this_thread::get_id() << std::endl;
     lock_u.unlock();
 
-    while(true)
+    while(running)
     {
         std::this_thread::sleep_for(std::chrono::milliseconds(5));
         // update position
