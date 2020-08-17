@@ -23,32 +23,43 @@ void createBalls(std::vector<std::shared_ptr<Ball>> &balls,
 
 int main() 
 {
+  // user input parameters < Start >
+  int frames_per_sec = 60;
+  int window_width   = 640;
+  int window_height  = 640;
+
+  int num_row_blocks  =  2;
+  int num_col_blocks  = 10;
+  int num_ball        =  2;
+  float velocity_ball = 1.0;
+  // user input parameters < End >
   
-  constexpr std::size_t frames_per_sec{60};
-  constexpr std::size_t milli_sec_per_frame{1000 / frames_per_sec};
-  constexpr std::size_t window_width{640};
-  constexpr std::size_t window_height{640};
-  
+  int milli_sec_per_frame = 1000 / frames_per_sec;
+
   // set widow size (static variable)
   BaseObject::setWindowSize(window_width, window_height);
   BaseObject::printWindowSize();
 
+  // create objects
+  std::vector<std::shared_ptr<Block>> blocks;
+  std::vector<std::shared_ptr<Ball>>  balls;
 
-
+  createBlocks(blocks, window_width, window_height, num_row_blocks, num_col_blocks);
+  createBalls(balls, window_width, window_height, num_ball, velocity_ball);
   
-  Renderer renderer(window_width, window_height);
-  Controller controller;
-  Game game;
-  game.Run(controller, renderer, milli_sec_per_frame);
-  std::cout << "Game has terminated successfully!\n";
-  std::cout << "Score: " << game.GetScore() << "\n";
+  // Renderer renderer(window_width, window_height);
+  // Controller controller;
+  // Game game;
+  // game.Run(controller, renderer, milli_sec_per_frame);
+  // std::cout << "Game has terminated successfully!\n";
+  // std::cout << "Score: " << game.GetScore() << "\n";
   
   
 
   return 0;
 }
 
-
+//**************************************************************************//
 
 void createBlocks(std::vector<std::shared_ptr<Block>> &blocks, int window_width, int window_height, int num_row, int num_col)
 {
@@ -78,6 +89,7 @@ void createBlocks(std::vector<std::shared_ptr<Block>> &blocks, int window_width,
   }
 }
 
+//**************************************************************************//
 
 void createBalls(std::vector<std::shared_ptr<Ball>> &balls, int window_width, int window_height, int num_ball, float velocity)
 {
