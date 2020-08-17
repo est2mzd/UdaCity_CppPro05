@@ -35,11 +35,11 @@ void Ball::init()
 
 void Ball::update()
 {
-    // update position
-    BaseObject::updatePosition();
+    // // update position
+    // BaseObject::updatePosition();
 
-    // Wall : update velocity for next simulation
-    checkCollisionToWall();
+    // // Wall : update velocity for next simulation
+    // checkCollisionToWall();
 
 }
 
@@ -77,4 +77,28 @@ void Ball::checkCollisionToWall()
         vel_y = vel_y * (-1.0);
     }    
 
+}
+
+
+void Ball::simulate(std::vector<std::shared_ptr<Block>> blocks, std::shared_ptr<Racket> racket)
+{
+    // launch calc function in a thread
+    threads.emplace_back(std::thread(&Ball::calc, this));
+}
+
+void Ball::calc()
+{
+    // print if of the current thread
+    std::unique_lock<std::mutex> lock_u(_mtx);
+    std::cout << "Ball #" << _id << "::go thread id = " << std::this_thread::get_id() << std::endl;
+    lock_u.unlock();
+
+    while(true)
+    {
+        // update position
+        BaseObject::updatePosition();
+
+        // Wall : update velocity for next simulation
+        checkCollisionToWall();
+    }
 }

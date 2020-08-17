@@ -9,7 +9,7 @@ enum RacketDirection
   kLeft, kRight, kNone 
 };
 
-class Racket : public BaseObject
+class Racket : public BaseObject, public std::enable_shared_from_this<Racket>
 {
 public:
   Racket();

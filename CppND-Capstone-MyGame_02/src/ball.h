@@ -4,15 +4,18 @@
 #include "BaseObject.h"
 #include "SDL.h"
 #include "racket.h"
+#include "Block.h"
+#include <memory>
 
-class Ball : public BaseObject 
+class Ball : public BaseObject, public std::enable_shared_from_this<Ball>
 {
 public:
   Ball();
   void setProperty(float x, float y, float vel_x, float vel_y);
   void init();
   void update();
-  
+  void simulate(std::vector<std::shared_ptr<Block>> blocks, std::shared_ptr<Racket> racket);
+  void calc();
 
 private:
   static int _id_counter;

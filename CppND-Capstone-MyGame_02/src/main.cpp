@@ -1,4 +1,5 @@
 #include <iostream>
+#include <algorithm>
 #include "controller.h"
 #include "game.h"
 #include "renderer.h"
@@ -9,6 +10,7 @@
 #include <vector>
 #include "Block.h"
 #include "ball.h"
+#include "racket.h"
 
 void createBlocks(std::vector<std::shared_ptr<Block>> &blocks, 
                   int window_width, int window_height, 
@@ -43,10 +45,21 @@ int main()
   // create objects
   std::vector<std::shared_ptr<Block>> blocks;
   std::vector<std::shared_ptr<Ball>>  balls;
+  std::shared_ptr<Racket> racket;
+  std::shared_ptr<Controller> controller;
+  std::shared_ptr<Renderer> renderer;
 
   createBlocks(blocks, window_width, window_height, num_row_blocks, num_col_blocks);
-  createBalls(balls, window_width, window_height, num_ball, velocity_ball);
+  createBalls(  balls, window_width, window_height, num_ball, velocity_ball);
   
+  for_each( balls.begin(), 
+            balls.end(),
+            [&blocks, &racket] (std::shared_ptr<Ball> &b) { b->simulate(blocks, racket); }
+           );
+
+  // renderer->createWindow(window_width, window_height);
+  // renderer->simulate(controller, blocks, balls, racket, milli_sec_per_frame);
+
   // Renderer renderer(window_width, window_height);
   // Controller controller;
   // Game game;
@@ -56,7 +69,7 @@ int main()
   
   
 
-  return 0;
+  // return 0;
 }
 
 //**************************************************************************//

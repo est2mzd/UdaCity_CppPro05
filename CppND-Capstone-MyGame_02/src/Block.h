@@ -4,7 +4,7 @@
 #include "BaseObject.h"
 #include "SDL.h"
 
-class Block : public BaseObject 
+class Block : public BaseObject, public std::enable_shared_from_this<Block>
 {
 public:
     Block();

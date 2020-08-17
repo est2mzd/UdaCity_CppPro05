@@ -47,6 +47,12 @@
         "memory_resource": "cpp",
         "random": "cpp",
         "string": "cpp",
-        "mutex": "cpp"
+        "mutex": "cpp",
+        "chrono": "cpp",
+        "condition_variable": "cpp",
+        "ctime": "cpp",
+        "ratio": "cpp",
+        "future": "cpp",
+        "thread": "cpp"
     }
 }
