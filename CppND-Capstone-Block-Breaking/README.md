@@ -2,7 +2,7 @@
 
 This is a starter repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
 
-<img src="snake_game.gif"/>
+<img src="block_breaking_game.gif"/>
 
 The Capstone Project gives you a chance to integrate what you've learned throughout this program. This project will become an important part of your portfolio to share with current and future colleagues and employers.
 
@@ -26,6 +26,7 @@ In this project, you can build your own C++ application or extend this Snake gam
 ## Basic Build Instructions
 
 1. Clone this repo.
+2. Move to the folder "CppND-Capstone-Block-Breaking"
 2. Make a build directory in the top level directory: `mkdir build && cd build`
 3. Compile: `cmake .. && make`
-4. Run it: `./SnakeGame`.
+4. Run it: `./Block_Breaking`.
