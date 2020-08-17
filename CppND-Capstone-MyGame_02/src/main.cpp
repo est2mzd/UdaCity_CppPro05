@@ -78,11 +78,7 @@ int main()
   {
     checkers.at(i)->simulateBallvsRacket(balls.at(i), racket);
     checkers.at(i)->simulateBallvsBlocks(balls.at(i), blocks);
-  }
-
-  std::cout << "Game has terminated successfully!\n";
-  // std::cout << "Score: " << game.GetScore() << "\n";
- 
+  } 
   return 0;
 }
 

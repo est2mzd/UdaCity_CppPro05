@@ -3,6 +3,7 @@
 
 // initialize static variable
 int Block::_id_counter = 0;
+int Block::score = 0;
 
 Block::Block()
 {

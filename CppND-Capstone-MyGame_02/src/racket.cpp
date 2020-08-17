@@ -11,12 +11,6 @@ Racket::Racket()
 Racket::~Racket()
 {
   std::cout << "Racket::~Racket()" <<std::endl;
-  
-//   // set up thread barrier before this object is destroyed
-//   std::for_each( threads.begin(), 
-//                  threads.end(),
-//                  [](std::thread &t){ t.join(); } 
-//               );
 }
 
 void Racket::init()
@@ -33,16 +27,6 @@ void Racket::init()
     height = 20.0;
 
     running = true;
-}
-
-
-void Racket::update()
-{
-    // update position
-    this->updatePosition();
-
-    // stop positoin
-    checkCollisionToWall();
 }
 
 
@@ -87,11 +71,6 @@ void Racket::simulate()
 
 void Racket::calc()
 {
-    // print if of the current thread
-    // std::unique_lock<std::mutex> lock_u(_mtx);
-    // std::cout << "Ball #" << _id << "::go thread id = " << std::this_thread::get_id() << std::endl;
-    // lock_u.unlock();
-
     std::cout << "Racket::calc()" << std::endl;
     
     while(running)

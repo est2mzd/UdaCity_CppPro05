@@ -163,6 +163,7 @@ void Renderer::render(   std::vector<std::shared_ptr<Block>> blocks,
     // Rendering <End>
 
 
+
     //---------------------------------------------------------
     // post - procedure
     frame_end = SDL_GetTicks();
@@ -175,7 +176,7 @@ void Renderer::render(   std::vector<std::shared_ptr<Block>> blocks,
     // After every second, update the window title.
     if (frame_end - title_timestamp >= 1000) 
     {
-      UpdateWindowTitle(1000, frame_count);
+      UpdateWindowTitle(blocks.at(0)->score, frame_count);
       frame_count = 0;
       title_timestamp = frame_end;
     }
@@ -187,5 +188,12 @@ void Renderer::render(   std::vector<std::shared_ptr<Block>> blocks,
     {
       SDL_Delay(target_frame_duration - frame_duration);
     }
+
+
+    // Finish procedure
+    running = racket->running;
+    // if (blocks.size() == blocks.at(0)->score)
+    //   running = false;
+
   }
 }

@@ -15,7 +15,6 @@ public:
   Racket();
   ~Racket();
   void init();
-  void update();
   RacketDirection direction;    
 
   void simulate();

@@ -64,6 +64,7 @@ bool Collision_Check::checkBallvsBlocks(std::shared_ptr<Ball>  ball, std::vector
             {
                 //  deactivate block
                 b->_is_active = false;
+                b->score += 1;
                 return true;
             }
         }  
