@@ -9,7 +9,7 @@
 
 Renderer::Renderer()
 {
-
+  std::cout << "Renderer::Renderer()" << std::endl;
 }
 
 // destructor
@@ -29,17 +29,19 @@ Renderer::~Renderer() {
 
 void Renderer::createWindow(int screen_width, int screen_height)
 {
-  this->screen_width  = screen_width;
-  this->screen_height = screen_height;
+  std::cout << "0. Renderer::createWindow()" << std::endl;
+  this->_window_width  = screen_width;
+  this->_window_height = screen_height;
 
   // Initialize SDL
+  std::cout << "1. Initialize SDL" << std::endl;
   if (SDL_Init(SDL_INIT_VIDEO) < 0) {
     std::cerr << "SDL could not initialize.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
 
   // Create Window
-  std::cout << "Create Window" << std::endl;
+  std::cout << "2. Create Window" << std::endl;
   sdl_window = SDL_CreateWindow("Block Breaking Game", SDL_WINDOWPOS_CENTERED,
                                 SDL_WINDOWPOS_CENTERED, screen_width,
                                 screen_height, SDL_WINDOW_SHOWN);
@@ -50,11 +52,14 @@ void Renderer::createWindow(int screen_width, int screen_height)
   }
 
   // Create renderer
+  std::cout << "3. Create renderer" << std::endl;
   sdl_renderer = SDL_CreateRenderer(sdl_window, -1, SDL_RENDERER_ACCELERATED);
   if (nullptr == sdl_renderer) {
     std::cerr << "Renderer could not be created.\n";
     std::cerr << "SDL_Error: " << SDL_GetError() << "\n";
   }
+
+  std::cout << "4. Created Window & renderer" << std::endl;
 }
 
 
@@ -146,17 +151,17 @@ void Renderer::render( std::shared_ptr<Controller> controller,
     SDL_RenderClear(sdl_renderer);
 
     // Ball
-    // for( auto ball : balls){
-    //   ball->render(sdl_renderer, draw_obj);
-    // }
+    for( auto ball : balls){
+      ball->render(sdl_renderer, draw_obj);
+    }
 
     // Racket
-    // racket->render(sdl_renderer, draw_obj);
+    racket->render(sdl_renderer, draw_obj);
 
     // Blocks
-    // for( auto block : blocks){
-    //   block->render(sdl_renderer, draw_obj);
-    // }
+    for( auto block : blocks){
+      block->render(sdl_renderer, draw_obj);
+    }
     
     // Update Screen
     SDL_RenderPresent(sdl_renderer);

@@ -14,7 +14,7 @@ class Renderer : public std::enable_shared_from_this<Renderer>
  public:
   Renderer();
   ~Renderer();
-  
+
   void createWindow(int window_width, int window_height);
 
   // void Render(Ball ball, Racket racket,  Block_Multi blocks);
@@ -42,8 +42,8 @@ class Renderer : public std::enable_shared_from_this<Renderer>
   // const std::size_t screen_width;
   // const std::size_t screen_height;
 
-  int screen_width;
-  int screen_height;
+  int _window_width;
+  int _window_height;
 
   std::vector<std::thread> threads;
 

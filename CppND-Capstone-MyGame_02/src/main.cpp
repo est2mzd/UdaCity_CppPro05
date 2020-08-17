@@ -45,9 +45,9 @@ int main()
   // create objects
   std::vector<std::shared_ptr<Block>> blocks;
   std::vector<std::shared_ptr<Ball>>  balls;
-  std::shared_ptr<Racket> racket;
-  std::shared_ptr<Controller> controller;
-  std::shared_ptr<Renderer> renderer;
+  std::shared_ptr<Racket> racket (new Racket);
+  std::shared_ptr<Controller> controller (new Controller);
+  std::shared_ptr<Renderer> renderer (new Renderer);
 
   createBlocks(blocks, window_width, window_height, num_row_blocks, num_col_blocks);
   createBalls(  balls, window_width, window_height, num_ball, velocity_ball);
@@ -57,8 +57,8 @@ int main()
             [&blocks, &racket] (std::shared_ptr<Ball> &b) { b->simulate(blocks, racket); }
            );
 
-  // renderer->createWindow(window_width, window_height);
-  // renderer->simulate(controller, blocks, balls, racket, milli_sec_per_frame);
+  renderer->createWindow(window_width, window_height);
+  renderer->simulate(controller, blocks, balls, racket, milli_sec_per_frame);
 
   // Renderer renderer(window_width, window_height);
   // Controller controller;

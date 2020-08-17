@@ -1,6 +1,8 @@
 #include "ball.h"
 #include <cmath>
 #include <iostream>
+#include <thread>
+#include <chrono>
 
 // initialize static variable
 int Ball::_id_counter = 0;
@@ -95,6 +97,7 @@ void Ball::calc()
 
     while(true)
     {
+        std::this_thread::sleep_for(std::chrono::milliseconds(1));
         // update position
         BaseObject::updatePosition();
 
