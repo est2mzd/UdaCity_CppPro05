@@ -63,7 +63,7 @@ int main()
   // simulate ball
   for_each( balls.begin(), 
             balls.end(),
-            [&blocks, &racket, &milli_sec_per_frame] (std::shared_ptr<Ball> &b) { b->simulate(blocks, racket, milli_sec_per_frame); }
+            [&blocks, &racket, &milli_sec_per_frame] (std::shared_ptr<Ball> &b) { b->simulate(); }
            );         
 
   std::cout << "Step - 4" << std::endl;

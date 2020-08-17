@@ -65,7 +65,7 @@ void Ball::checkCollisionToWall()
 }
 
 
-void Ball::simulate(std::vector<std::shared_ptr<Block>> blocks, std::shared_ptr<Racket> racket, int milli_sec_per_frame)
+void Ball::simulate()
 {
     // launch calc function in a thread
     // threads.emplace_back(std::thread(&Ball::calc1, this, milli_sec_per_frame));
