@@ -1,7 +1,6 @@
 #include <iostream>
 #include <algorithm>
 // #include "controller.h"
-#include "game.h"
 #include "renderer.h"
 
 #include "BaseObject.h"
@@ -9,6 +8,7 @@
 #include <thread>
 #include <chrono>
 #include <vector>
+#include "collision_check.h"
 #include "Block.h"
 #include "ball.h"
 #include "racket.h"

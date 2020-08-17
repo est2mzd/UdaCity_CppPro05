@@ -7,7 +7,6 @@
 #include "ball.h"
 #include "racket.h"
 #include "Block.h"
-#include "block_multi.h"
 
 class Renderer : public std::enable_shared_from_this<Renderer>
 {
@@ -17,7 +16,7 @@ class Renderer : public std::enable_shared_from_this<Renderer>
 
   void createWindow(int window_width, int window_height);
 
-  // void Render(Ball ball, Racket racket,  Block_Multi blocks);
+  
   void UpdateWindowTitle(int score, int fps);
 
 
