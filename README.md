@@ -2,7 +2,10 @@
 
 This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
 
-<img src="block_breaking_game.gif"/>
+<img src="./CppND-Capstone-Block-Breaking/block_breaking_game.gif"/>
+
+## Program Structure
+<img src="./CppND-Capstone-Block-Breaking/program_design.jpg"/>
 
 ## Dependencies for Running Locally
 * cmake >= 3.7
