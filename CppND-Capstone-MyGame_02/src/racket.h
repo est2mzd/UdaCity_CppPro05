@@ -27,7 +27,7 @@ private:
   void updatePosition();
   void checkCollisionToWall();
   void HandleInput(bool& running);
-  std::vector<std::thread> threads;
+  // std::vector<std::thread> threads;
 };
 
 #endif

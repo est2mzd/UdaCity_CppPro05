@@ -8,6 +8,7 @@ int BaseObject::_id_counter_all = 0;
 
 std::mutex BaseObject::_mtx;
 
+int BaseObject::_milli_sec_per_frame = (int)(1000/60);
 int BaseObject::_window_width  = 300;
 int BaseObject::_window_height = 300;
 

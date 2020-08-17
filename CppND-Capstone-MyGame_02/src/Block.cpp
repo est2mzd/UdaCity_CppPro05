@@ -9,6 +9,7 @@ Block::Block()
     // type & id
     _type = ObjectType::block;
     _id   = _id_counter++;
+    is_active = true;
 
     // common initial condition
     vel_x  = 0.0;
@@ -23,6 +24,9 @@ void Block::setProperty(float x, float y, float w, float h)
     pos_y  = y;
     width  = w;
     height = h;
+
+    // std::cout << x << "," << y << "," << w << "," << h << std::endl;
+    // std::cout << pos_x << "," << pos_y << "," << width << "," << height << std::endl;
 }
 
 

@@ -12,11 +12,11 @@ Racket::~Racket()
 {
   std::cout << "Racket::~Racket()" <<std::endl;
   
-  // set up thread barrier before this object is destroyed
-  std::for_each( threads.begin(), 
-                 threads.end(),
-                 [](std::thread &t){ t.join(); } 
-              );
+//   // set up thread barrier before this object is destroyed
+//   std::for_each( threads.begin(), 
+//                  threads.end(),
+//                  [](std::thread &t){ t.join(); } 
+//               );
 }
 
 void Racket::init()
@@ -97,7 +97,7 @@ void Racket::calc()
     
     while(true)
     {
-        std::this_thread::sleep_for(std::chrono::milliseconds(15));
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
         // get key input 
         this->HandleInput(this->running); 
 

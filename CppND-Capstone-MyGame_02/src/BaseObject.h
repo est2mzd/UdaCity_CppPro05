@@ -37,6 +37,7 @@ public:
     float vel_x, vel_y;
     float width, height;
 
+    static void setMsPerFrame(int mspf){ _milli_sec_per_frame = mspf;}
     static void setWindowSize(int width, int height);
     static void printWindowSize();
 
@@ -45,11 +46,13 @@ protected:
     int _id;
     bool _is_active; // if deactivated, the object is not rendered.
 
+    static int _milli_sec_per_frame;
     static int _window_width;
     static int _window_height;
 
     std::vector<std::thread> threads; // holds all threads that have been launced withing this object
     static std::mutex _mtx;           // mutex shared by all objects for protecting cout
+
 
 private:
     static int _id_counter_all;
