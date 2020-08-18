@@ -8,7 +8,7 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 
 ## Criteria 1 (required) : A README with instructions is included with the project
 
-### The README is included with the project and has instructions for building/running the project.
+### 1-1 : The README is included with the project and has instructions for building/running the project.
 
 <br>
 
