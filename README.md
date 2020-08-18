@@ -2,11 +2,11 @@
 
 This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](https://www.udacity.com/course/c-plus-plus-nanodegree--nd213). The code for this repo was inspired by [this](https://codereview.stackexchange.com/questions/212296/snake-game-in-c-with-sdl) excellent StackOverflow post and set of responses.
 
-<img src="./CppND-Capstone-Block-Breaking/block_breaking_game.gif2"/> <br><br><br>
+<img src="./CppND-Capstone-Block-Breaking/block_breaking_game.gif"/> <br><br><br>
 
 # Project Specifications
 
-## Criteria 1-1 (required) : A README with instructions is included with the project
+## Criteria 1 (required) : A README with instructions is included with the project
 - instructions for building/running the project.
 
 ### Dependencies for Running Locally
@@ -33,9 +33,9 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 4. Run it: `./Block_Breaking`.
 <br><br><br>
 
-## Criteria 1-2 (required) : The README indicates which project is chosen.
+## Criteria 2 (required) : The README indicates which project is chosen.
 
-### 1-2-1 : The README describes the project you have built.
+### 2-1 : The README describes the project you have built.
 * I chose the video game as my project program.
 * The game name is "Block Breaking game".
 * The game has 4 types of objects.
@@ -44,9 +44,9 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
   * 3 : racket -> To controll ball movemnets, racket can reflect balls.
   * 4 : wall -> Balls reflect by 4 walls (up,down.right,left).
 
-<img src="./CppND-Capstone-Block-Breaking/game_explanation_1.jpg2"/> 
+<img src="./CppND-Capstone-Block-Breaking/game_explanation_1.jpg"/> 
 
-### 1-2-2 : The README also indicates the file and class structure, along with the expected behavior or output of the program.
+### 2-2 : The README also indicates the file and class structure, along with the expected behavior or output of the program.
 * My program consists of 7 .cpp files.
 
 * 1 : main.cpp
@@ -108,11 +108,63 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
   * `Renderer::render()` has while-loop which controls redering timing.
     * This program renders 60 frame per second.
 
-## Criteria 1-3 (required) : The README includes information about each rubric point addressed.
+* reference : program structure
+<img src="./CppND-Capstone-Block-Breaking/program_design.jpg"/>
 
-### Compiling and Testing
-* 
+## Criteria 3 (required) : The README includes information about each rubric point addressed.
 
+### 3-1 : Compiling and Testing (required)
+* The submission must compile and run.
+  * ***Done***
 
-## Program Structure
-<img src="./CppND-Capstone-Block-Breaking/program_design.jpg2"/>
+### 3-2 : Loops, Functions, I/O (option)
+* The project demonstrates an understanding of C++ functions and control structures.
+  * ***Done***. See `Ball::calc()`.
+* The project reads data from a file and process the data, or the program writes data to a file.
+  * Not implemented
+* The project accepts user input and processes the input.
+  * ***Done***. See `Racket::HandleInput()`.
+
+### 3-3 : Object Oriented Programming (option)
+* The project uses Object Oriented Programming techniques.
+  * ***Done***. See the above explanation of .cpp/.h .
+* Classes use appropriate access specifiers for class members.
+  * ***Done***. See the explanation of BaseObject.cpp/.h .
+* Class constructors utilize member initialization lists.
+  * ***Done***. See the explanation of renderer.cpp/.h .
+* Classes abstract implementation details from their interfaces.
+  * Not implemented
+* Classes encapsulate behavior.
+  * ***Done***? See the explanation of BaseObject.cpp/.h .
+* Classes follow an appropriate inheritance hierarchy.
+  * ***Done***. See the explanation of ball.cpp/.h .
+* Overloaded functions allow the same function to operate on different parameters.
+  * Not implemented
+* Derived class functions override virtual base class functions.
+  * ***Done***. See the explanation of BaseObject.cpp/.h  and ball.cpp/.h . 
+* Templates generalize functions in the project.
+  * Not implemented
+
+### 3-4 : Memory Management (option)  
+* The project makes use of references in function declarations.
+  * ***Done***. In most files, pass-by-reference is used.
+* The project uses destructors appropriately.
+  * ***Done***. See the explanation of BaseObject.cpp/.h
+* The project uses scope / Resource Acquisition Is Initialization (RAII) where appropriate.
+  * Probably done. 
+* The project follows the Rule of 5.
+  * Not implemented
+* The project uses move semantics to move data, instead of copying it, where possible.
+  * Probably done. I used std::vector::emplace_back().
+* The project uses smart pointers instead of raw pointers.
+  * ***Done***. See the explanation of BaseObject.cpp/.h
+
+### 3-5 : Concurrency (option)  
+* The project uses multithreading.
+  * ***Done***. All calculations are done in threds separate from the main thread.
+* A promise and future is used in the project.
+  * Not implemented 
+* A mutex or lock is used in the project.
+  * Not implemented 
+* A condition variable is used in the project.
+  * Not implemented 
