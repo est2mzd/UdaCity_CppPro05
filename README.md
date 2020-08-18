@@ -7,7 +7,10 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 # Project Specifications
 
 ## Criteria 1 (required) : A README with instructions is included with the project
-- instructions for building/running the project.
+
+### The README is included with the project and has instructions for building/running the project.
+
+<br>
 
 ### Dependencies for Running Locally
 * cmake >= 3.7
@@ -49,9 +52,12 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 ### 2-2 : The README also indicates the file and class structure, along with the expected behavior or output of the program.
 * My program consists of 7 .cpp files.
 
+* reference : program structure
+<img src="./CppND-Capstone-Block-Breaking/program_design.jpg"/>
+
 * 1 : main.cpp
   * main.cpp creates all objects and they are created as ***shared_ptr***.
-  * All calulations are done in ***other thread***. After all threads are joined, this programm finished.
+  * All calulations are done in ***other threads***. After all threads are joined, this programm finished.
   * To stop this program, clicke ***X*** button on the GUI.
   * In this file, players can modify the number of balls and blocks.
 
@@ -59,26 +65,26 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
   * This file has `BaseObject` class.
   * `BaseObject` is a super class of `Ball`, `Racket` and `Block` classes.
   * `BaseObject` provides common members such as position, velocity, size and etc.
-  * This program does not have an object for Walls. Instead, `BaseObject` has window_width and window_height as static members. To calculate the collision of Walls and Balls, these 2 members are used.
-  * To create thread barrier, `BaseObject::~BaseObject()`(destructor) do `std::thread::join()` for all thread.
-  * `BaseObject::simulate()` and `BaseObject::calc()` are virtual functions. They are overrided by `Ball` and `Racket` classes.
-  * To share variables with sub-classes, some variables like _window_width and threads are created as `protected`.
-  * To prevente access from other classes, a variable to count number of instances is created as `private`.
+  * This program does not have an object for Walls. Instead, `BaseObject` has window_width and window_height as static members. To calculate the collision of Walls , Balls and Racket , these 2 members are used.
+  * To create ***thread barrier***, `BaseObject::~BaseObject()`(destructor) do `std::thread::join()` for all ***thread***.
+  * `BaseObject::simulate()` and `BaseObject::calc()` are ***virtual functions***. They are overrided by `Ball` and `Racket` classes.
+  * To share variables with sub-classes, some variables like _window_width and threads are created as ***protected***.
+  * To prevente access from other classes, a variable to count number of instances is created as ***private***.
 
 * 3 : ball.cpp/.h
   * This file has `Ball` class.
   * `Ball` inherits `BaseObject`.
   * To calculate the collision to wall, `Ball` has 3 methods (checkCollisionX(), checkCollisionY() and checkCollisionToWall()).
-  * `Ball::simulate()` create a thread for each ball and call `Ball::calc()`.
+  * `Ball::simulate()` create a ***thread*** for each ball and call `Ball::calc()`.
   * `Ball::calc()` runs while-loop and calculates ball movement.
 
 * 4 : racket.cpp/.h
   * This file has `Racket` class.
   * `Racket` inherits `BaseObject`.
   * To calculate the collision to wall, `Racket` has 1 methods (checkCollisionToWall()).
-  * `Racket::simulate()` create a thread and call `Racket::calc()`.
+  * `Racket::simulate()` create a ***thread*** and call `Racket::calc()`.
   * `Racket::calc()` runs while-loop and calculates ball movement.
-  * To accept key inputs, I implemented `Racket::HandleInput()`. This method accepts ***Right*** and ***Left*** key inputs.
+  * To accept key inputs, I implemented `Racket::HandleInput()`. This method accepts **Right** and **Left** ***key inputs***.
 
 * 5 : Block.cpp/.h
   * This file has `Block` class.
@@ -104,12 +110,11 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
   * `Renderer` inherits nothing.
   * `Renderer` has ***member initialization lists***.
   * `Renderer::createWindow` create GUI Window using SDL2 Library.
-  * `Renderer::simulate()` create a thread and call `Renderer::render()`.
-  * `Renderer::render()` has while-loop which controls redering timing.
+  * `Renderer::simulate()` create a ***thread*** and call `Renderer::render()`.
+  * `Renderer::render()` has ***while-loop*** which controls redering timing.
     * This program renders 60 frame per second.
 
-* reference : program structure
-<img src="./CppND-Capstone-Block-Breaking/program_design.jpg"/>
+
 
 ## Criteria 3 (required) : The README includes information about each rubric point addressed.
 
