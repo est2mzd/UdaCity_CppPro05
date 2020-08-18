@@ -35,6 +35,7 @@ BaseObject::~BaseObject()
     
 }
 
+
 void BaseObject::setWindowSize(int width, int height)
 {
     _window_width  = width;
@@ -54,6 +55,8 @@ void BaseObject::render(SDL_Renderer *sdl_renderer, SDL_Rect &block)
         SDL_RenderFillRect(sdl_renderer, &block);    
     }
 }
+
+
 void BaseObject::updatePosition()
 {
     pos_x += vel_x;

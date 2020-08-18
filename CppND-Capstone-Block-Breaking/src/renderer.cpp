@@ -7,7 +7,7 @@
 
 // void createWindow(int window_width, int window_height);
 
-Renderer::Renderer()
+Renderer::Renderer() : _window_width{300}, _window_height{300}
 {
   std::cout << "Renderer::Renderer()" << std::endl;
 }
@@ -62,34 +62,6 @@ void Renderer::createWindow(int screen_width, int screen_height)
 
   std::cout << "4. Created Window & renderer" << std::endl;
 }
-
-
-
-// void Renderer::Render(Ball ball, Racket racket,  Block_Multi blocks)
-// {
-//   SDL_Rect block;
- 
-//   //---------------------------------------------------------
-//   // Clear screen
-//   SDL_SetRenderDrawColor(sdl_renderer, 0x1E, 0x1E, 0x1E, 0xFF); // set color
-//   SDL_RenderClear(sdl_renderer);
-
-//   //---------------------------------------------------------
-//   // Ball
-//   ball.render(sdl_renderer, block);
-
-//   //---------------------------------------------------------
-//   // Racket
-//   racket.render(sdl_renderer, block);
-
-//   //---------------------------------------------------------
-//   // Blocks
-//   blocks.render(sdl_renderer, block);
-
-//   //---------------------------------------------------------
-//   // Update Screen
-//   SDL_RenderPresent(sdl_renderer);
-// }
 
 
 

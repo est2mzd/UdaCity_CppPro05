@@ -69,10 +69,28 @@ void Ball::simulate()
 {
     // launch calc function in a thread
     // threads.emplace_back(std::thread(&Ball::calc1, this, milli_sec_per_frame));
-    threads.emplace_back(std::thread(&Ball::calc2, this));
+    threads.emplace_back(std::thread(&Ball::calc, this));
 }
 
-void Ball::calc1(int milli_sec_per_frame)
+void Ball::calc()
+{
+    // print if of the current thread
+    std::unique_lock<std::mutex> lock_u(_mtx);
+    std::cout << "Ball #" << _id << "::go thread id = " << std::this_thread::get_id() << std::endl;
+    lock_u.unlock();
+
+    while(running)
+    {
+        std::this_thread::sleep_for(std::chrono::milliseconds(5));
+        // update position
+        BaseObject::updatePosition();
+
+        // Wall : update velocity for next simulation
+        checkCollisionToWall();
+    }
+}
+
+void Ball::calc2(int milli_sec_per_frame)
 {
     // print if of the current thread
     std::unique_lock<std::mutex> lock_u(_mtx);
@@ -113,20 +131,3 @@ void Ball::calc1(int milli_sec_per_frame)
     }
 }
 
-void Ball::calc2()
-{
-    // print if of the current thread
-    std::unique_lock<std::mutex> lock_u(_mtx);
-    std::cout << "Ball #" << _id << "::go thread id = " << std::this_thread::get_id() << std::endl;
-    lock_u.unlock();
-
-    while(running)
-    {
-        std::this_thread::sleep_for(std::chrono::milliseconds(5));
-        // update position
-        BaseObject::updatePosition();
-
-        // Wall : update velocity for next simulation
-        checkCollisionToWall();
-    }
-}

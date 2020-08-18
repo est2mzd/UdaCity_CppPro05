@@ -1,6 +1,7 @@
 #ifndef BASE_OBJECT
 #define BASE_OBJECT
 
+#include <iostream>
 #include <vector>
 #include <thread>
 #include <mutex>
@@ -30,7 +31,6 @@ public:
     // special method
     void render(SDL_Renderer *sdl_renderer, SDL_Rect &block);
     void updatePosition();
-    virtual void update(){};
 
     // this variables are use by other classes to check collision
     float pos_x, pos_y;
@@ -42,6 +42,10 @@ public:
     static void printWindowSize();
     bool _is_active; // if deactivated, the object is not rendered.
     static bool running;
+
+    // virtual function
+    virtual void simulate(){ std::cout << "simulate() is virtual function." << std::endl;};
+    virtual void calc(){ std::cout << "simulate() is virtual function." << std::endl;};   
 
 protected:
     ObjectType _type;

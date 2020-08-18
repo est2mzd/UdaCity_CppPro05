@@ -50,30 +50,46 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 * My program consists of 7 .cpp files.
 
 * 1 : main.cpp
-  * main.cpp creates all objects.
+  * main.cpp creates all objects and they are created as ***shared_ptr***.
+  * All calulations are done in ***other thread***. After all threads are joined, this programm finished.
+  * To stop this program, clicke ***X*** button on the GUI.
   * In this file, players can modify the number of balls and blocks.
-  * To stop this program, clicke `X` button on the GUI. 
 
-* 2 : BaseObject.cpp
+* 2 : BaseObject.cpp/.h
   * This file has `BaseObject` class.
   * `BaseObject` is a super class of `Ball`, `Racket` and `Block` classes.
   * `BaseObject` provides common members such as position, velocity, size and etc.
   * This program does not have an object for Walls. Instead, `BaseObject` has window_width and window_height as static members. To calculate the collision of Walls and Balls, these 2 members are used.
-  * To create thread barrier, `BaseObject::~BaseObject()` do `std::thread::join()` for all thread.
+  * To create thread barrier, `BaseObject::~BaseObject()`(destructor) do `std::thread::join()` for all thread.
+  * `BaseObject::simulate()` and `BaseObject::calc()` are virtual functions. They are overrided by `Ball` and `Racket` classes.
+ * To share variables with sub-classes, some variables like _window_width and threads are created as `protected`.
+ * To prevente access from other classes, a variable to count number of instances is created as `private`.
 
-* 3 : ball.cpp
+* 3 : ball.cpp/.h
   * This file has `Ball` class.
   * `Ball` inherits `BaseObject`.
   * To calculate the collision to wall, `Ball` has 3 methods (checkCollisionX(), checkCollisionY() and checkCollisionToWall()).
   * `Ball::simulate()` create a thread for each ball and call `Ball::calc()`.
   * `Ball::calc()` runs while-loop and calculates ball movement.
 
-* 3 : racket.cpp
+* 4 : racket.cpp/.h
   * This file has `Racket` class.
   * `Racket` inherits `BaseObject`.
   * To calculate the collision to wall, `Racket` has 1 methods (checkCollisionToWall()).
-  * `Ball::simulate()` create a thread for each ball and call `Ball::calc()`.
-  * `Ball::calc()` runs while-loop and calculates ball movement.
+  * `Racket::simulate()` create a thread and call `Racket::calc()`.
+  * `Racket::calc()` runs while-loop and calculates ball movement.
+  * To accept key inputs, I implemented `Racket::HandleInput()`. This method accepts ***Right*** and ***Left*** key inputs.
+
+* 5 : Block.cpp/.h
+  * This file has `Block` class.
+  * `Block` inherits `BaseObject`.
+  * `Block` does not calculate al all, but stores game scores and block active state. When a block is deactevated, the block disappears.
+  * `Block` accepts the `is_active` flag from `Collision_Check` class, and pass it to `Renderer` class.
+
+* 6 : collision_check.cpp/.h
+  * This file has `BlCollision_Checkock` class.
+  * `Collision_Check` inherits nothing.
+  * Like `Ball` class, `Collision_Check` has `simulate()` and `calc()`, but a little bit function names are changed.
 
 ## Program Structure
 <img src="./CppND-Capstone-Block-Breaking/program_design.jpg2"/>

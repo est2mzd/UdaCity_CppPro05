@@ -13,8 +13,8 @@ public:
   Ball();
   void setProperty(float x, float y, float vel_x, float vel_y);
   void simulate();
-  void calc1(int milli_sec_per_frame);
-  void calc2();
+  void calc();
+  void calc2(int milli_sec_per_frame);
 
 private:
   static int _id_counter;
