@@ -6,7 +6,7 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 
 # Project Specifications
 
-## Criteria 1 : A README with instructions is included with the project
+## Criteria 1-1 (required) : A README with instructions is included with the project
 - instructions for building/running the project.
 
 ### Dependencies for Running Locally
@@ -33,9 +33,9 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 4. Run it: `./Block_Breaking`.
 <br><br><br>
 
-## Criteria 2 : The README indicates which project is chosen.
+## Criteria 1-2 (required) : The README indicates which project is chosen.
 
-### 2-1 : The README describes the project you have built.
+### 1-2-1 : The README describes the project you have built.
 * I chose the video game as my project program.
 * The game name is "Block Breaking game".
 * The game has 4 types of objects.
@@ -46,7 +46,7 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 
 <img src="./CppND-Capstone-Block-Breaking/game_explanation_1.jpg2"/> 
 
-### 2-2 : The README also indicates the file and class structure, along with the expected behavior or output of the program.
+### 1-2-2 : The README also indicates the file and class structure, along with the expected behavior or output of the program.
 * My program consists of 7 .cpp files.
 
 * 1 : main.cpp
@@ -62,8 +62,8 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
   * This program does not have an object for Walls. Instead, `BaseObject` has window_width and window_height as static members. To calculate the collision of Walls and Balls, these 2 members are used.
   * To create thread barrier, `BaseObject::~BaseObject()`(destructor) do `std::thread::join()` for all thread.
   * `BaseObject::simulate()` and `BaseObject::calc()` are virtual functions. They are overrided by `Ball` and `Racket` classes.
- * To share variables with sub-classes, some variables like _window_width and threads are created as `protected`.
- * To prevente access from other classes, a variable to count number of instances is created as `private`.
+  * To share variables with sub-classes, some variables like _window_width and threads are created as `protected`.
+  * To prevente access from other classes, a variable to count number of instances is created as `private`.
 
 * 3 : ball.cpp/.h
   * This file has `Ball` class.
@@ -89,7 +89,30 @@ This is a repo for the Capstone project in the [Udacity C++ Nanodegree Program](
 * 6 : collision_check.cpp/.h
   * This file has `BlCollision_Checkock` class.
   * `Collision_Check` inherits nothing.
-  * Like `Ball` class, `Collision_Check` has `simulate()` and `calc()`, but a little bit function names are changed.
+  * `Collision_Check::checkBallvsRacket()` calculates the collision between balls and racket.
+  * `Collision_Check::checkBallvsBlocks()` calculates the collision between balls and blokcs.    
+  * Like `Ball` class, `Collision_Check` has `simulate()` and `calc()`, but a little bit function names are changed. The usage of functions are the same.
+  * `simulate` function  
+    * Balls vs Blocks : `Collision_Check::simulateBallvsBlocks()`
+    * Balls vs Rackets : `Collision_Check::simulateBallvsRacket()`
+  * `calc` function  
+    * Balls vs Blocks : `Collision_Check::calcBallvsBlocks()`
+    * Balls vs Rackets : `Collision_Check::calcBallvsRacket()`
+
+* 7 : renderer.cpp/.h
+  * This file has `Renderer` class.
+  * `Renderer` inherits nothing.
+  * `Renderer` has ***member initialization lists***.
+  * `Renderer::createWindow` create GUI Window using SDL2 Library.
+  * `Renderer::simulate()` create a thread and call `Renderer::render()`.
+  * `Renderer::render()` has while-loop which controls redering timing.
+    * This program renders 60 frame per second.
+
+## Criteria 1-3 (required) : The README includes information about each rubric point addressed.
+
+### Compiling and Testing
+* 
+
 
 ## Program Structure
 <img src="./CppND-Capstone-Block-Breaking/program_design.jpg2"/>
